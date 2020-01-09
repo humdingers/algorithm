@@ -1,4 +1,4 @@
-package com.unisound.algorithm;
+package com.unisound.listNode;
 
 //合并两个有序链表
 public class MergeTwoLists

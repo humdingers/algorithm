@@ -1,6 +1,18 @@
-package com.unisound.algorithm;
+package com.unisound.reverse;
 
 //反转链表
+class ListNode
+{
+    int val;
+
+    ListNode next;
+
+    ListNode(int x)
+    {
+        this.val = x;
+    }
+}
+
 public class ReverseList
 {
 

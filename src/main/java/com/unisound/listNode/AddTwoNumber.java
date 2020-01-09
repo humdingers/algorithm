@@ -1,4 +1,4 @@
-package com.unisound.algorithm;
+package com.unisound.listNode;
 
 //两数相加
 /*
@@ -15,17 +15,6 @@ package com.unisound.algorithm;
         原因：342 + 465 = 807
 
  */
-class ListNode
-{
-    int val;
-
-    ListNode next;
-
-    ListNode(int x)
-    {
-        this.val = x;
-    }
-}
 
 public class AddTwoNumber
 {

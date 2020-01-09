@@ -1,4 +1,4 @@
-package com.unisound.algorithm;
+package com.unisound.sort;
 
 import java.util.Arrays;
 

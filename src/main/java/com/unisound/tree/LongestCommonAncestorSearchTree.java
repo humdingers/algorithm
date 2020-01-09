@@ -1,4 +1,4 @@
-package com.unisound.algorithm;
+package com.unisound.tree;
 
 //二叉搜索树的最近公共祖先
 /*

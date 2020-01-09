@@ -1,4 +1,4 @@
-package com.unisound.algorithm;
+package com.unisound.sort;
 
 //把数组排成最小的数
 /*

@@ -1,4 +1,4 @@
-package com.unisound.algorithm;
+package com.unisound.tree;
 
 import java.util.Arrays;
 import java.util.LinkedList;

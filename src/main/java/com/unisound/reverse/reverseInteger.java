@@ -1,4 +1,4 @@
-package com.unisound.algorithm;
+package com.unisound.reverse;
 
 public class reverseInteger
 {

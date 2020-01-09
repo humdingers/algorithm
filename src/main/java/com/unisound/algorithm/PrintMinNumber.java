@@ -30,6 +30,8 @@ public class PrintMinNumber
             int main_number = array[end];
             int small_cur = start;
             for (int j = start; j < end; j++) {
+                // 自定义比较的规则
+                // 按照定义的比较规则，将小的数字排在前面
                 if (isSmall(String.valueOf(array[j]), String.valueOf(main_number))) {
                     int temp = array[j];
                     array[j] = array[small_cur];
@@ -50,6 +52,8 @@ public class PrintMinNumber
         String left = m + n;
         String right = n + m;
         boolean result = false;
+        // 两个数字两种方式拼接在一起，位数一样，再逐位比较
+        // 直接将两个数字进行比较是错误的
         for (int i = 0; i < left.length(); i++) {
             if (left.charAt(i) < right.charAt(i))
                 return true;

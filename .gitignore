@@ -1,0 +1,8 @@
+.classpath
+.project
+*.bak
+*.swp
+.settings/
+target/
+data/
+logs

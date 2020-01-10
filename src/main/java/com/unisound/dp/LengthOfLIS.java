@@ -20,10 +20,14 @@ public class LengthOfLIS
     {
         int[] dp = new int[nums.length];
         int res = 0;
+        // base case
+        // 子序列最少包含自己，长度最小为1;
         Arrays.fill(dp, 1);
+        // dp[i]表示以nums[i]这个数结尾的最长递增子序列的长度
         for (int i = 0; i < nums.length; i++) {
             for (int j = 0; j < i; j++) {
                 if (nums[i] > nums[j]) {
+                    // 往前找比当前自己nums[i]小的值的最长递增子序列的长度，然后拼接上自己也就是+1
                     dp[i] = Math.max(dp[i], dp[j] + 1);
                 }
 

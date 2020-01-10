@@ -20,15 +20,18 @@ public class LengthOfLongestSubstring
     public int lengthOfLongestSubstring(String s)
     {
         Set<Character> set = new HashSet<Character>();
-        int i = 0, j = 0, ans = 0;
+        // 使用set作为window，和最小覆盖子串一样，反行之，如果set不包含当前字符就添加到window,如果包含就移动左指针缩小
+        int left = 0, right = 0, ans = 0;
         int n = s.length();
 
-        while (i < n && j < n) {
-            if (!set.contains(s.charAt(j))) {
-                set.add(s.charAt(j++));
-                ans = Math.max(ans, j - i);
+        while (left < n && right < n) {
+            if (!set.contains(s.charAt(right))) {
+                set.add(s.charAt(right++));
+                ans = Math.max(ans, right - left);
             } else {
-                set.remove(s.charAt(i++));
+                // 出现重复字符
+                // 增加left指针，同时从左边开始删除字符，直至不包含重复字符
+                set.remove(s.charAt(left++));
             }
 
         }

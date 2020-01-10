@@ -18,8 +18,10 @@ import java.util.Stack;
 
 public class BackspaceCompare
 {
+    // 重构字符串
     public boolean backspaceCompare(String S, String T)
     {
+        // 比较重构后的字符串
         return build(S).equals(build(T));
 
     }
@@ -28,8 +30,10 @@ public class BackspaceCompare
     {
         Stack<Character> tmp = new Stack<Character>();
         for (Character c : str.toCharArray()) {
+            // 不是退格符'#'就进栈
             if (!c.equals('#')) {
                 tmp.push(c);
+                // 遇到退格符时，就出栈一个字符代表删除前一个字符
             } else if (!tmp.isEmpty()) {
                 tmp.pop();
             }
@@ -39,19 +43,21 @@ public class BackspaceCompare
 
     }
 
+    // 反向遍历字符串，如果遍历到一个退格符，那么再往左第一个非退格字符将会被删除，剩余未被删除的字符就是最终的字符串。
     public boolean backspaceCompareDp(String S, String T)
     {
         int i = S.length() - 1;
         int j = S.length() - 1;
 
+        // 分别记录两个字符串的退格数
         int skipi = 0;
         int skipj = 0;
         while (i >= 0 && j >= 0) {
-            while (i >= 0) {
+            while (i >= 0) { // 循环的作用为了多删除前面一个字符
                 if (S.charAt(i) == '#') {
                     i--;
-                    skipi++;
-                } else if (skipi > 0) {
+                    skipi++; // 记录要删除的字符数
+                } else if (skipi > 0) { // 删除字符
                     i--;
                     skipi--;
                 } else {
@@ -72,6 +78,7 @@ public class BackspaceCompare
                 }
             }
 
+            // 两个字符串从后往前删除，删除结束时或者不需要删除时开始一一比较
             if (i >= 0 && j >= 0 && S.charAt(i) != T.charAt(j)) {
                 return false;
 

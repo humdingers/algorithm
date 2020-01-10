@@ -28,6 +28,7 @@ import java.util.List;
  */
 public class FindAnagrams
 {
+    // 跟最小覆盖有些不同，这里需要覆盖的字符、字符数都相同
     public List<Integer> findAnagrams(String s, String p)
     {
         List<Integer> res = new ArrayList<Integer>();
@@ -37,15 +38,21 @@ public class FindAnagrams
         int[] needs = new int[26];
         int[] windows = new int[26];
 
-        int left = 0, right = 0, total = p.length();
+        int left = 0, right = 0;
+        int total = p.length();
+
+        // 记录需要覆盖的字母数
         for (char c : p.toCharArray()) {
             needs[c - 'a']++;
         }
 
         while (right < s.length()) {
             char chr = s.charAt(right);
+            // 包含需要覆盖的字符
             if (needs[chr - 'a'] > 0) {
-                windows[chr - 'a']++;
+                windows[chr - 'a']++; // 窗口添加
+
+                // window字符小于等于需要覆盖的
                 if (windows[chr - 'a'] <= needs[chr - 'a']) {
                     total--;
 
@@ -60,10 +67,11 @@ public class FindAnagrams
 
                 char chl = s.charAt(left);
 
+                // 包含需要覆盖的字符
                 if (needs[chl - 'a'] > 0) {
-                    windows[chl - 'a']--;
+                    windows[chl - 'a']--; // 窗口缩减
                     if (windows[chl - 'a'] < needs[chl - 'a']) {
-                        total += 1;
+                        total += 1; // 跳出循环不满足需求
                     }
 
                 }

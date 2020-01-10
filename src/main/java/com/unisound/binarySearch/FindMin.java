@@ -16,6 +16,14 @@ package com.unisound.binarySearch;
     输出: 1
 
  */
+
+/*
+ * 寻找这个变化点的特点：
+
+    所有变化点左侧元素 > 数组第一个元素
+    
+    所有变化点右侧元素 < 数组第一个元素
+ */
 public class FindMin
 {
     public int findMin(int[] nums)
@@ -31,8 +39,20 @@ public class FindMin
             return nums[0];
         }
 
+        // 找到数组的中间元素 mid。
+
+        // 如果中间元素 > 数组第一个元素，我们需要在 mid 右边搜索变化点。
+
+        // 如果中间元素 < 数组第一个元素，我们需要在 mid 左边搜索变化点
+
         while (left <= right) {
             int mid = left + (right - left) / 2;
+
+            // 当我们找到变化点时停止搜索，当以下条件满足任意一个即可：
+            // nums[mid] > nums[mid + 1]，因此 mid+1 是最小值。
+
+            // nums[mid - 1] > nums[mid]，因此 mid 是最小值。
+
             if (nums[mid] > nums[mid + 1]) {
                 return nums[mid + 1];
             }

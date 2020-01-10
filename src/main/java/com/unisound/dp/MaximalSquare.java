@@ -35,6 +35,7 @@ public class MaximalSquare
             for (int j = 0; j < n; j++) {
 
                 if (matrix[i][j] == '1') {
+                    // base case 上边界和左边界的为“1”的初始值为1，因为没有上方、左方、左上方
                     if (i == 0 || j == 0) {
                         dp[i][j] = 1;
 

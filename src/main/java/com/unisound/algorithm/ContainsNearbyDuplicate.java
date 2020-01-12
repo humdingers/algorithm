@@ -26,7 +26,7 @@ public class ContainsNearbyDuplicate
 
             windows.add(nums[i]);
 
-            if (windows.size() > k) {
+            if (windows.size() > k) { // 此时window已经添加一个新元素，窗口大小为k+1,所以删除i-k-1+1
                 windows.remove(nums[i - k]);
             }
         }

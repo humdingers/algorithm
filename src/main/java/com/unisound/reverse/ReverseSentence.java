@@ -27,8 +27,7 @@ public class ReverseSentence
                 reverse(arr, start, end - 1);
                 end++;
                 start = end;
-            } else if (i == arr.length) {
-                end++;
+            } else if (i == arr.length - 1) {
                 reverse(arr, start, end);
             } else {
                 end++;

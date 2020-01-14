@@ -40,7 +40,7 @@ public class IsBalancedTree
         // 获取右节点的层数
         int right = depth(root.right);
 
-        // 获取右节点的层数
+        // 如果层数为-1直接截断
         if (right == -1)
             return -1;
 

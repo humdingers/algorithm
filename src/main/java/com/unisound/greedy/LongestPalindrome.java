@@ -41,9 +41,10 @@ public class LongestPalindrome
         int res = 0;
 
         for (int num : count) {
-            res += num / 2 * 2;
+            res += num / 2 * 2; // 回文串是左右相等，*2左右对称个数，/2 消除奇数的情况
 
-            if (num % 2 == 1 && res % 2 == 0) {
+            if (num % 2 == 1 && res % 2 == 0) {// 回文串只能有唯一的那个中心。
+                // res % 2 == 0为了防止前面已经订好了中心，防止重复计算，
                 res++;
             }
 

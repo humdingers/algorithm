@@ -4,7 +4,7 @@ package com.unisound.algorithm;
 //写一个算法，使能拿到的硬币的和最大。
 public class GetKCoins
 {
-    public int takeCoins(int[] list, int k)
+    public static int takeCoins(int[] list, int k)
     {
         int n = list.length;
         int[] preSum = new int[n + 1];
@@ -18,7 +18,7 @@ public class GetKCoins
             preSum[i + 1] = preSum[i] + list[i];
         }
 
-        for (int i = 1; i <= k; i++) {
+        for (int i = 0; i <= k; i++) {
             // 遍历搜索左边拿多少次和右边拿多少次哪个更合适
             int left = i;
             int right = k - i;
@@ -29,6 +29,13 @@ public class GetKCoins
         }
 
         return res;
+    }
+
+    public static void main(String[] args)
+    {
+        int[] nums = new int[] {5, 1, 2, 3, 4};
+        System.out.print(takeCoins(nums, 3));
+
     }
 
 }

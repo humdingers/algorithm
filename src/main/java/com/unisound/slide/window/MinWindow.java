@@ -83,6 +83,73 @@ public class MinWindow
 
     }
 
+    public String minWindowCopy(String s, String t)
+    {
+        if (s == null || s.length() < t.length() || s.length() == 0) {
+            return "";
+        }
+
+        HashMap<Character, Integer> window = new HashMap<Character, Integer>();
+
+        HashMap<Character, Integer> needs = new HashMap<Character, Integer>();
+
+        for (char c : t.toCharArray()) {
+            if (needs.containsKey(c)) {
+                needs.put(c, needs.get(c) + 1);
+
+            } else {
+                needs.put(c, 1);
+            }
+        }
+        int left = 0;
+        int right = 0;
+        int match = 0;
+
+        int minleft = 0;
+        int minlen = s.length() + 1;
+
+        while (right < s.length()) {
+            char rc = s.charAt(right);
+            if (needs.containsKey(rc)) {
+                if (window.containsKey(rc)) {
+                    window.put(rc, window.get(rc) + 1);
+
+                } else {
+                    window.put(rc, 1);
+                }
+
+                if (window.get(rc).compareTo(needs.get(rc)) == 0) {
+                    match++;
+                }
+            }
+
+            right++;
+
+            while (match == needs.size()) {
+                if (right - left < minlen) {
+                    minlen = right - left;
+                    minleft = left;
+                }
+                char lc = s.charAt(left);
+                if (needs.containsKey(lc)) {
+                    window.put(lc, window.get(lc) - 1);
+                    if (window.get(lc) < needs.get(lc)) {
+                        match--;
+                    }
+                }
+
+                left++;
+            }
+        }
+
+        if (minlen > s.length()) {
+            return "";
+        }
+
+        return s.substring(minleft, minleft + minlen);
+
+    }
+
     public static void main(String[] args)
     {
         // TODO Auto-generated method stub

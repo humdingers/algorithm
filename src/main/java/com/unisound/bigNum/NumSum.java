@@ -13,13 +13,17 @@ public class NumSum
     {
         int sum = n;
         // 利用逻辑与的短路特性实现递归终
-        boolean flag = (n > 0) && ((sum += sumRecurse(n - 1)) > 0);
+        if (n > 0) {
+            sum += sumRecurse(n - 1);
+        }
+        // boolean flag = (n > 0) && ((sum += sumRecurse(n - 1)) > 0);
         return sum;
     }
 
     public static void main(String[] args)
     {
-        System.out.print(sumRecurse(3));
+        System.out.println(sumRecurse(15));
+        System.out.println(sum(15));
 
     }
 

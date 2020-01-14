@@ -78,12 +78,13 @@ public class BackspaceCompare
                 }
             }
 
-            // 两个字符串从后往前删除，删除结束时或者不需要删除时开始一一比较
+            // 删除结束时开始一一比较
             if (i >= 0 && j >= 0 && S.charAt(i) != T.charAt(j)) {
                 return false;
 
             }
 
+            // 如果一方为空，另一方不为空
             if ((i == -1) != (j == -1)) {
                 return false;
             }

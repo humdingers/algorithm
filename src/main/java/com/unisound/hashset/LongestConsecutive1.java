@@ -31,14 +31,14 @@ public class LongestConsecutive1
 
             if (!tmp.contains(num - 1)) {
                 int currentNum = num;
-                int currentStrink = 1;
+                int count = 1;
 
                 while (tmp.contains(currentNum + 1)) {
                     currentNum += 1;
-                    currentStrink += 1;
+                    count += 1;
                 }
 
-                res = Math.max(currentStrink, res);
+                res = Math.max(count, res);
 
             }
         }

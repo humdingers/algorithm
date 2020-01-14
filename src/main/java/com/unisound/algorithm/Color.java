@@ -39,8 +39,8 @@ public class Color
 
     public static void main(String[] args)
     {
-        System.out.println(color(6, 5));
-        System.out.println(helper(6, 5));
+        System.out.println(color(5, 2));
+        System.out.println(helper(5, 2));
 
     }
 }

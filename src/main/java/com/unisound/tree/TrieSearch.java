@@ -84,10 +84,21 @@ class Trie
         return node;
     }
 
+    // Returns if the word is in the trie.
+    public boolean match(String word)
+    {
+        TrieNode node = searchPrefix(word);
+        return node != null && node.isEnd();
+    }
+
     public String searchLongestPrefix(String word)
     {
         TrieNode node = root;
         StringBuilder prefix = new StringBuilder();
+        // 路径上的每一个节点都有且仅有一个孩子。 否则，找到的路径就不是所有字符串的公共前缀
+
+        // 路径不包含被标记成某一个键值字符串结尾的节点。 因为最长公共前缀不可能比某个字符串本身长
+
         for (int i = 0; i < word.length(); i++) {
             char curLetter = word.charAt(i);
             if (node.containsKey(curLetter) && (node.getLinks() == 1) && (!node.isEnd())) {

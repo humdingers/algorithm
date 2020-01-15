@@ -25,6 +25,17 @@ import java.util.Set;
     输出: 3
     解释: 节点 5 和节点 1 的最近公共祖先是节点 3。
  */
+/*
+ * 如果每个节点都有父指针，那么我们可以从 p 和 q 返回以获取它们的祖先。在这个遍历过程中，我们得到的第一个公共节点是 LCA 节点。我们可以在遍历树时将父指针保存在字典中。
+    
+    算法：
+    
+    从根节点开始遍历树。
+    在找到 p 和 q 之前，将父指针存储在字典中。
+    一旦我们找到了 p 和 q，我们就可以使用父亲字典获得 p 的所有祖先，并添加到一个称为祖先的集合中。
+    同样，我们遍历节点 q 的祖先。如果祖先存在于为 p 设置的祖先中，这意味着这是 p 和 q 之间的第一个共同祖先（同时向上遍历），因此这是 LCA 节点
+
+ */
 public class LowestCommonAncestor
 {
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q)
@@ -59,6 +70,39 @@ public class LowestCommonAncestor
             q = parent.get(q);
         }
         return q;
+
+    }
+
+    private TreeNode ans;
+
+    public LowestCommonAncestor()
+    {
+        this.ans = null;
+    }
+
+    public TreeNode lowestCommonAncestors(TreeNode root, TreeNode p, TreeNode q)
+    {
+
+        searchParent(root, p, q);
+        return this.ans;
+
+    }
+
+    public boolean searchParent(TreeNode curNode, TreeNode p, TreeNode q)
+    {
+        if (curNode == null) {
+            return false;
+        }
+
+        int left = searchParent(curNode.left, p, q) ? 1 : 0;
+        int right = searchParent(curNode.right, p, q) ? 1 : 0;
+        int mid = (curNode == p || curNode == q) ? 1 : 0;
+
+        if (mid + left + right >= 2) {
+            this.ans = curNode;
+        }
+
+        return (mid + left + right > 0);
 
     }
 

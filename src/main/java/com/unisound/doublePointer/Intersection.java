@@ -10,6 +10,7 @@ public class Intersection
     /*
      * 给定两个数组，编写一个函数来计算它们的交集。 示例 1: 输入: nums1 = [1,2,2,1], nums2 = [2,2] 输出: [2]
      */
+    // 或者 其思想是将两个数组转换为集合 set，然后迭代较小的集合检查是否存在在较大集合中。平均情况下，这种方法的时间复杂度为 O(n+m)O(n+m)。
     public int[] intersection(int[] nums1, int[] nums2)
     {
         Set<Integer> res = new HashSet<Integer>();

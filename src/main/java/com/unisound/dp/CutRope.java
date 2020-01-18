@@ -15,15 +15,19 @@ public class CutRope
             return 1;
         }
 
+        // 虽然n=3时乘积最大值为3，但是题目要求必须分割，所以当做特殊情况来表示
         if (n == 3) {
             return 2;
         }
 
         int[] dp = new int[n + 1];
 
+        // 区别上面的n的特殊情况
+        // 此时base case, 为i当前值时乘积的最大值，当超过4的时候乘积就不是自身了
         dp[1] = 1;
         dp[2] = 2;
         dp[3] = 3;
+
         int res = 0;
 
         for (int i = 4; i <= n; i++) {

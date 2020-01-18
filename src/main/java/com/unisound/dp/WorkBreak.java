@@ -24,7 +24,7 @@ public class WorkBreak
     public boolean wordBreak(String s, List<String> wordDict)
     {
 
-        Set<String> wordSet = new HashSet<String>();
+        Set<String> wordSet = new HashSet<String>(wordDict);
         boolean[] dp = new boolean[s.length() + 1];
 
         dp[0] = true;

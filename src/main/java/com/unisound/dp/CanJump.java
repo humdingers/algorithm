@@ -25,7 +25,7 @@ public class CanJump
         for (int i = nums.length - 2; i >= 0; i--) {
             // 当前位置可以向后跳跃的跳跃距离，不能超过数组最大长度
             int futherJump = Math.min(i + nums[i], nums.length - 1);
-            // 查找这个跳跃距离区间是否存在可以过渡跳跃的点，存在说明可以跳跃到i+nums[i]位置，把dp[i]置为true
+            // 查找这个跳跃距离区间是否存在可以过渡跳跃的点或者直接跳跃过去，存在说明可以跳跃到i+nums[i]位置，把dp[i]置为true
             for (int j = i + 1; j <= futherJump; j++) {
                 if (dp[j]) {
                     dp[i] = true;

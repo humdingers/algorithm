@@ -1,4 +1,4 @@
-package com.unisound.dp;
+package com.unisound.backpack;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,10 +76,11 @@ public class GenerateParenthesis
             // 怎么选择放置左括号还是右括号
             // 还有剩余的左括号，那这个格子就可以放左括号
             if (left > 0) {
-                backpack(subRes + '(', left - 1, right, res);
+                backpack(subRes + '(', left - 1, right, res); // 深度遍历到底部，再从底层逐渐向上回溯
             }
 
             if (left < right) {
+                // 回溯过程，类似撤销选择，回溯过程添加右括号)
                 // 只有剩余的右括号多于左括号时，这个格子才可以放右括号 ****重点理解***
                 // 比如()()_ _，那第五层递归就不能放右括号，因为剩余的左右括号相等
                 backpack(subRes + ')', left, right - 1, res);

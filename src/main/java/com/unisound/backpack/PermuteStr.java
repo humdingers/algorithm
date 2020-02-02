@@ -56,7 +56,8 @@ public class PermuteStr
         }
 
         char[] chars = str.toCharArray();
-        TreeSet<String> temp = new TreeSet<String>();
+        TreeSet<String> temp = new TreeSet<String>(); // 使用treeset对于排列的重复结果，可以去重，
+        // 这里只针对字符串方便去重，但是涉及到路径为列表时不方便使用set去重
         Permutation(chars, 0, temp);
         result.addAll(temp);
         return result;
@@ -72,7 +73,7 @@ public class PermuteStr
             result.add(String.valueOf(chars));
         } else {
             for (int i = begin; i <= chars.length - 1; i++) {
-                swap(chars, begin, i);
+                swap(chars, begin, i); // 固定begin位置不变，增加后面的位置索引与之交换，每个位置都被固定一次，都与后面位置交换
 
                 Permutation(chars, begin + 1, result);
 

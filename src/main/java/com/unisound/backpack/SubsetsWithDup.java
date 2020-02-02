@@ -43,7 +43,8 @@ public class SubsetsWithDup
                 continue;
             }
             track.add(nums[i]);
-            getAns(nums, i + 1, track, ans);
+            getAns(nums, i + 1, track, ans); // 子集和全排列系列问题不同，
+            // 全排列需要固定size大小的track，子集不是，所以当前用过的元素下轮不需要包含，所以此时为i+1
             track.remove(track.size() - 1);
         }
     }

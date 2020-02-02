@@ -25,7 +25,7 @@ public class FindLength
         // base case ，0时数组为空，不存在公共子数组，所以为0;
         for (int i = 1; i <= n; i++) {
             for (int j = 1; j <= m; j++) {
-                if (A[i - 1] == B[j - 1]) {// 坚毅的原因，字符串索引比初始化数组大小小1
+                if (A[i - 1] == B[j - 1]) {// 减1的原因，字符串索引比初始化数组大小小1
                     dp[i][j] = dp[i - 1][j - 1] + 1;
                     result = Math.max(result, dp[i][j]);
                 }

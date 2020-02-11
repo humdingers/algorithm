@@ -49,7 +49,7 @@ public class PermuteUnique
                     continue;
                 }
 
-                if (i > 0 && nums[i] == nums[i - 1] && !flag[i]) {
+                if (i > 0 && nums[i] == nums[i - 1] && !flag[i - 1]) {
                     continue;
                 }
 

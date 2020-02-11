@@ -37,6 +37,7 @@ public class CombinationSum2
             return res;
         }
 
+        // 存在重复元素
         Arrays.sort(candidates);
         List<Integer> track = new ArrayList<Integer>();
         process(0, candidates, target, track, res);

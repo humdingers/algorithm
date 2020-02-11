@@ -49,6 +49,7 @@ public class Subsets
 
         for (int i = start; i < nums.length; i++) {
             track.add(nums[i]);
+            // 子集类问题从i开始
             // 因为并没有说可以重复利用原数组的单个元素去组合子集，所以下一次搜索要从 i + 1 开始，跳过当前元素
 
             backpack(nums, i + 1, track, res);

@@ -47,7 +47,7 @@ public class BackspaceCompare
     public boolean backspaceCompareDp(String S, String T)
     {
         int i = S.length() - 1;
-        int j = S.length() - 1;
+        int j = T.length() - 1;
 
         // 分别记录两个字符串的退格数
         int skipi = 0;

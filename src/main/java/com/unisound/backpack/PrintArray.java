@@ -50,7 +50,7 @@ public class PrintArray
 
     public static void main(String[] args)
     {
-        printNum(4);
+        printNum(2);
 
     }
 

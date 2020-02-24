@@ -27,7 +27,7 @@ public class SortColors
         int cur = 0;
 
         while (cur <= p2) {
-            // 把0交换到左边
+            // 把0交换到左边787
             if (nums[cur] == 0) {
                 int tmp = nums[cur];
                 nums[cur] = nums[p1];

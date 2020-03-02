@@ -52,9 +52,9 @@ public class LongestPalindromeSubseq
 
         for (int i = n - 1; i >= 0; i--) {
             dp[i][i] = 1; // base case 如果只有一个字符，显然最长回文子序列长度是 1 ,i、j重叠
-            for (int j = i; j < n; j++) {
+            for (int j = i + 1; j < n; j++) {
                 if (s.charAt(i) == s.charAt(j)) {
-                    dp[i][j] = dp[i - 1][j - 1] + 2;
+                    dp[i][j] = dp[i + 1][j - 1] + 2;
                 } else {
                     dp[i][j] = Math.max(dp[i][j - 1], dp[i + 1][j]);
                 }

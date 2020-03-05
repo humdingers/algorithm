@@ -7,7 +7,7 @@ public class ReverseSentence
 {
     public static void main(String[] args)
     {
-        String string = "I am a student.";
+        String string = "I am a student. ";
 
         reverseSentence(string);
     }
@@ -49,6 +49,27 @@ public class ReverseSentence
             end--;
         }
 
+    }
+
+    public String reverseWords(String s)
+    {
+        String[] tmp = s.trim().split(" ");
+
+        StringBuffer tmpBuffer = new StringBuffer();
+
+        for (int i = tmp.length - 1; i >= 0; i++) {
+            if (tmp[i] == "") {
+                continue;
+            }
+
+            if (i == 0) {
+                tmpBuffer.append(tmp[i]);
+            } else {
+                tmpBuffer.append(tmp[i] + " ");
+            }
+        }
+
+        return tmpBuffer.toString();
     }
 
 }

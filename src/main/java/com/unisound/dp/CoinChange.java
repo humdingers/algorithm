@@ -32,6 +32,7 @@ import java.util.Arrays;
 public class CoinChange
 {
 
+    // O(Sn)，其中 SS 是金额，nn 是面额数。
     public int coinChange(int[] coins, int amount)
     {
         int max = amount + 1;
@@ -49,6 +50,8 @@ public class CoinChange
 
     }
 
+    // O(N×amount)
+
     public int change(int amount, int[] coins)
     {
         int[] dp = new int[amount + 1];
@@ -59,6 +62,10 @@ public class CoinChange
         // 另一个基本情况是没有硬币，若 amount > 0，则组合情况为 0，若 amount == 0，则组合情况为 1。
 
         dp[0] = 1;
+
+        // 遍历所有硬币面值：
+        // 对于每个硬币，我们将从金额 0 遍历到 amount：
+        // 对于每个 x，计算组合数：dp[x] += dp[x - coin]。
 
         for (int coin : coins) {
             for (int i = coin; i <= amount; i++) {

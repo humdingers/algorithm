@@ -18,6 +18,7 @@ package com.unisound.binarySearch;
     输出: 4
 
  */
+//O(logN)
 public class RotateSearch
 {
     public int search(int[] nums, int target)

@@ -18,12 +18,13 @@ import java.util.List;
     ]
 
  */
+// O(n^2)
 public class ThreeSums
 {
 
     public static List<List<Integer>> threeSum(int[] nums)
     {
-        List<List<Integer>> ans = new ArrayList();
+        List<List<Integer>> ans = new ArrayList<List<Integer>>();
         int len = nums.length;
         if (nums == null || len < 3) {
             return ans;

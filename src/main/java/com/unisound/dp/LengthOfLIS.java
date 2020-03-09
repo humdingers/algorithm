@@ -13,6 +13,7 @@ import java.util.Arrays;
  */
 
 //最长上升子序列
+//O(n^2)。有两个 nn 的循环。
 public class LengthOfLIS
 {
 

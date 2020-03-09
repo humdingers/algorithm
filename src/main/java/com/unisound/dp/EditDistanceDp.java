@@ -1,5 +1,6 @@
 package com.unisound.dp;
 
+//O(mn)，两层循环显而易见
 public class EditDistanceDp
 {
     public static int minDistance(String word1, String word2)

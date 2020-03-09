@@ -28,6 +28,8 @@ package com.unisound.reverse;
         反转后 n-k 个数字后        : 5 6 7 1 2 3 4 --> 结果
 
  */
+
+// O(n)
 public class RotateArray
 {
 

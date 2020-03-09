@@ -19,6 +19,8 @@ import java.util.List;
     输出: [1,2,3,6,9,8,7,4,5]
 
  */
+
+//时间复杂度： O(N)，其中 N 是输入矩阵所有元素的个数。因为我们将矩阵中的每个元素都添加进答案里。
 public class SpiralOrder
 {
     public List<Integer> spiralOrder(int[][] matrix)

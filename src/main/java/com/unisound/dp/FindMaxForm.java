@@ -20,11 +20,39 @@ package com.unisound.dp;
     解释: 总共 4 个字符串可以通过 5 个 0 和 3 个 1 拼出，即 "10","0001","1","0" 。
 
  */
+
+//时间复杂度：O(mnl)，其中 l 是字符串的个数
 public class FindMaxForm
 {
     public int findMaxForm(String[] strs, int m, int n)
     {
 
+        // dp(i, j) 表示使用 i 个 0 和 j 个 1，最多能拼出的字符串数目，那么状态转移方程为：
+        int[][] dp = new int[m + 1][n + 1];
+
+        for (String str : strs) {
+            int[] count = countZerosOnes(str);
+
+            for (int zero = m; zero >= count[0]; zero--) {
+                for (int one = n; one >= count[1]; one--) {
+                    dp[zero][one] = Math.max(dp[zero - count[0]][one - count[1]] + 1, dp[zero][one]);
+                }
+            }
+        }
+
+        return dp[m][n];
+
+    }
+
+    // countZerosOnes 统计该字符串中 0 和 1 的个数
+    public int[] countZerosOnes(String s)
+    {
+        int[] tmp = new int[2];
+        for (char c : s.toCharArray()) {
+            tmp[c - '0']++;
+        }
+
+        return tmp;
     }
 
     public static void main(String[] args)

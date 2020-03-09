@@ -9,6 +9,7 @@ package com.unisound.doublePointer;
         输出: 6
  */
 
+//O(n)
 public class Trap
 {
     public int trap(int[] height)

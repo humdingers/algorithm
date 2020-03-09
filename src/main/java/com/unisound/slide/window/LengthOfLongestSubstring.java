@@ -15,6 +15,8 @@ import java.util.Set;
     解释: 因为无重复字符的最长子串是 "abc"，所以其长度为 3。
 
  */
+
+//时间复杂度：O(2n) = O(n)，在最糟糕的情况下，每个字符将被 i 和 j 访问两次
 public class LengthOfLongestSubstring
 {
     public int lengthOfLongestSubstring(String s)

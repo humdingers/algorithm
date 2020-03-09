@@ -24,6 +24,8 @@ package com.unisound.binarySearch;
     
     所有变化点右侧元素 < 数组第一个元素
  */
+
+//O(logN) 
 public class FindMin
 {
     public int findMin(int[] nums)

@@ -10,6 +10,8 @@ public class MinWindow
      * 给你一个字符串 S、一个字符串 T，请在字符串 S 里面找出：包含 T 所有字母的最小子串。 示例： 输入: S = "ADOBECODEBANC", T = "ABC" 输出: "BANC"
      */
 
+    // O(∣S∣+∣T∣)，其中 |S| 和 |T|代表字符串 S和 T的长
+
     public String minWindow(String s, String t)
     {
         if (s == null || s.length() < t.length() || s.length() == 0) {

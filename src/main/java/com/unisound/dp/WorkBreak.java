@@ -19,6 +19,7 @@ import java.util.Set;
     解释: 返回 true 因为 "leetcode" 可以被拆分成 "leet code"。
 
  */
+//时间复杂度：O(n^2)
 public class WorkBreak
 {
     public boolean wordBreak(String s, List<String> wordDict)

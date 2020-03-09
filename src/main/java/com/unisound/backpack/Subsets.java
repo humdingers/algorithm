@@ -26,6 +26,8 @@ import java.util.List;
 
 
  */
+
+//O(N×2^N )
 public class Subsets
 {
     public List<List<Integer>> subsets(int[] nums)

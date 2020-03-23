@@ -22,6 +22,8 @@ import java.util.List;
       [2,2,3]
     ]
  */
+
+//(2^n)
 public class CombinationSum
 {
 

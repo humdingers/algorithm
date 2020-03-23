@@ -32,49 +32,52 @@ public class FindAnagrams
     public List<Integer> findAnagrams(String s, String p)
     {
         List<Integer> res = new ArrayList<Integer>();
-        if (s == null || s.length() == 0)
-            return res;
 
-        int[] window = new int[26];
+        if (s == null || s.length() < p.length() || s.length() == 0) {
+            return res;
+        }
+
         int[] needs = new int[26];
+        int[] windows = new int[26];
 
         for (char c : p.toCharArray()) {
             needs[c - 'a']++;
         }
 
-        int count = p.length();
-
         int left = 0;
         int right = 0;
+        int count = p.length();
 
         while (right < s.length()) {
             char chr = s.charAt(right);
             if (needs[chr - 'a'] > 0) {
-                window[chr - 'a']++;
-                if (window[chr - 'a'] <= needs[chr - 'a']) {
+                windows[chr - 'a']++;
+                if (windows[chr - 'a'] <= needs[chr - 'a']) {
                     count--;
                 }
             }
 
+            right++;
+
             while (count == 0) {
-                char chl = s.charAt(left);
-                if (right - left + 1 == p.length()) {
+                if (right - left == p.length()) {
                     res.add(left);
+
                 }
+                char chl = s.charAt(left);
                 if (needs[chl - 'a'] > 0) {
-                    window[chl - 'a']--;
-                    if (window[chl - 'a'] < needs[chl - 'a']) {
+                    windows[chl - 'a']--;
+                    if (windows[chl - 'a'] < needs[chl - 'a']) {
                         count++;
                     }
                 }
+
                 left++;
             }
-
-            right++;
-
         }
 
         return res;
+
     }
 
 }

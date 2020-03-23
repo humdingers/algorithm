@@ -20,16 +20,17 @@ public class CountSubstrings
         int n = s.length();
 
         int res = 0;
-
         for (int center = 0; center < 2 * n - 1; center++) {
             int left = center / 2;
             int right = left + center % 2;
 
-            while (left >= 0 && right < n && s.charAt(left) == s.charAt(right)) {
+            while (left >= 0 && right <= n - 1 && s.charAt(left) == s.charAt(right)) {
+
                 res++;
                 left--;
                 right++;
             }
+
         }
 
         return res;

@@ -36,8 +36,8 @@ public class BackspaceCompare
                 tmp.pop();
             }
         }
+
         return tmp.toString();
 
     }
-
 }

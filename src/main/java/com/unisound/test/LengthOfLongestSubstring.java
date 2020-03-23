@@ -22,6 +22,7 @@ public class LengthOfLongestSubstring
         Set<Character> window = new HashSet<Character>();
         int left = 0;
         int right = 0;
+
         int res = 0;
 
         while (left < s.length() && right < s.length()) {
@@ -31,6 +32,7 @@ public class LengthOfLongestSubstring
             } else {
                 window.remove(s.charAt(left++));
             }
+
         }
 
         return res;

@@ -28,17 +28,15 @@ public class IncreaseTriplet
         int secondMin = Integer.MAX_VALUE;
 
         for (int i = 0; i < nums.length; i++) {
-            if (nums[i] < firstMin) {
+            if (nums[i] <= firstMin) {
                 firstMin = nums[i];
-            }
-
-            else if (nums[i] < secondMin) {
+            } else if (nums[i] <= secondMin) {
                 secondMin = nums[i];
-
             } else {
                 return true;
             }
         }
+
         return false;
     }
 

@@ -25,29 +25,25 @@ public class CombinationSum3
 
         List<Integer> track = new ArrayList<Integer>();
 
-        backpack(1, k, n, track, res);
+        backpack(k, n, track, 1, res);
 
         return res;
 
     }
 
-    public void backpack(int start, int k, int n, List<Integer> track, List<List<Integer>> res)
+    public void backpack(int k, int n, List<Integer> track, int start, List<List<Integer>> res)
     {
-
         if (track.size() == k && n == 0) {
-            res.add(track);
+            res.add(new ArrayList<Integer>(track));
         } else if (track.size() == k || n == 0) {
             return;
         } else {
             for (int i = start; i <= 9; i++) {
-                if (n - i > 0) {
+                if (n - i >= 0) {
                     track.add(i);
-                    backpack(i + 1, k, n - i, track, res);
-
+                    backpack(k, n - i, track, i + 1, res);
                     track.remove(track.size() - 1);
-
                 }
-
             }
         }
 

@@ -34,6 +34,7 @@ public class CheckValidString
                 if (L > 0) {
                     L--;
                 }
+
                 if (R > 0) {
                     R--;
                 } else {
@@ -44,11 +45,11 @@ public class CheckValidString
                     L--;
                 }
                 R++;
+
             }
         }
 
         return L <= 0 && R >= 0;
-
     }
 
 }

@@ -11,6 +11,8 @@ package com.unisound.doublePointer;
     
     输入: nums1 = [4,9,5], nums2 = [9,4,9,8,4]
     输出: [4,9]
+    
+    O(nlogn+mlogm)
 
  */
 import java.util.Arrays;

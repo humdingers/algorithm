@@ -17,51 +17,56 @@ public class MinWindow
             return "";
         }
 
+        Map<Character, Integer> window = new HashMap<Character, Integer>();
         Map<Character, Integer> needs = new HashMap<Character, Integer>();
-        Map<Character, Integer> windows = new HashMap<Character, Integer>();
 
         for (char c : t.toCharArray()) {
             needs.put(c, needs.getOrDefault(c, 0) + 1);
         }
 
+        int minleft = 0;
+        int minlen = s.length() + 1;
+
         int left = 0;
         int right = 0;
-        int minlength = s.length() + 1;
-        int minleft = 0;
 
         int count = needs.size();
 
         while (right < s.length()) {
             char chr = s.charAt(right);
             if (needs.containsKey(chr)) {
-                windows.put(chr, windows.getOrDefault(chr, 0) + 1);
-
-                if (windows.get(chr).compareTo(needs.get(chr)) == 0) {
+                window.put(chr, window.getOrDefault(chr, 0) + 1);
+                if (window.get(chr).compareTo(needs.get(chr)) == 0) {
                     count--;
                 }
             }
+
             right++;
 
             while (count == 0) {
-                if (right - left < minlength) {
+                if (right - left < minlen) {
+                    minlen = right - left;
                     minleft = left;
-                    minlength = right - left;
-
                 }
-
                 char chl = s.charAt(left);
                 if (needs.containsKey(chl)) {
-                    windows.put(chl, windows.get(chl) - 1);
-
-                    if (windows.get(chl) < needs.get(chr)) {
+                    window.put(chl, window.get(chl) - 1);
+                    if (window.get(chl) < (needs.get(chl))) {
                         count++;
                     }
                 }
+
                 left++;
             }
+
         }
 
-        return s.substring(minleft, minleft + minlength);
+        if (minlen > s.length()) {
+            return "";
+
+        }
+
+        return s.substring(minleft, minleft + minlen);
 
     }
 

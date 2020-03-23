@@ -38,7 +38,7 @@ public class FindKthNum
             if (count < k) {
                 low = mid + 1;
 
-            } else { // 此时必须为等于， 此时mid
+            } else { // 此时必须为等于， 此时mid-1 ，使得low>high跳出循环
                 high = mid - 1;
             }
         }
@@ -56,7 +56,7 @@ public class FindKthNum
             int mid = begin + (end - begin) / 2;
 
             if (data[mid] <= midValue) {
-                begin = mid + 1; // 统计个数 +1 使得 begin>end 跳出循环
+                begin = mid + 1; // 统计个数 +1 （索引从0开始的）使得 begin>end 跳出循环
             } else {
                 end = mid - 1;
             }

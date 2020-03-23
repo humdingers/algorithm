@@ -15,15 +15,15 @@ import java.util.Comparator;
 public class LargestNumber
 {
 
-    private class LargerNumberComparator implements Comparator<String>
+    private class largestNumberCompare implements Comparator<String>
     {
         public int compare(String a, String b)
         {
-            String order1 = a + b;
-            String order2 = b + a;
+            String o1 = a + b;
 
-            return order2.compareTo(order1);
+            String o2 = b + a;
 
+            return o2.compareTo(o1);
         }
 
     }
@@ -36,19 +36,18 @@ public class LargestNumber
             tmp[i] = String.valueOf(nums[i]);
         }
 
-        Arrays.sort(tmp, new LargerNumberComparator());
+        Arrays.sort(tmp, new largestNumberCompare());
 
         if (tmp[0].equals("0")) {
             return "0";
         }
 
-        // Build largest number from sorted array.
-        String largestNumberStr = new String();
-        for (String numAsStr : tmp) {
-            largestNumberStr += numAsStr;
+        String largestnumber = new String();
+        for (String numStr : tmp) {
+            largestnumber += numStr;
         }
 
-        return largestNumberStr;
+        return largestnumber;
 
     }
 

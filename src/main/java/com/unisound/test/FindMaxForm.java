@@ -29,13 +29,11 @@ public class FindMaxForm
         int[][] dp = new int[m + 1][n + 1];
 
         for (String str : strs) {
+            int[] count = counts(str);
 
-            int[] counts = countZeroOnes(str);
-
-            for (int i = m; i >= counts[0]; i--) {
-                for (int j = n; j >= counts[1]; j--) {
-                    dp[i][j] = Math.max(dp[i - counts[0]][j - counts[1]] + 1, dp[i][j]);
-
+            for (int i = m; i >= count[0]; i--) {
+                for (int j = n; j >= count[1]; j--) {
+                    dp[i][j] = Math.max(dp[i - count[0]][j - count[1]] + 1, dp[i][j]);
                 }
             }
 
@@ -45,12 +43,12 @@ public class FindMaxForm
 
     }
 
-    public int[] countZeroOnes(String str)
+    public int[] counts(String str)
     {
         int[] count = new int[2];
 
         for (char c : str.toCharArray()) {
-            count[c - '0'] += 1;
+            count[c - '0']++;
         }
 
         return count;

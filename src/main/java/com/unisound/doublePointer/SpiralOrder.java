@@ -21,6 +21,7 @@ import java.util.List;
  */
 
 //时间复杂度： O(N)，其中 N 是输入矩阵所有元素的个数。因为我们将矩阵中的每个元素都添加进答案里。
+//O(MN) ： M, N 分别为矩阵行数和列数
 public class SpiralOrder
 {
     public List<Integer> spiralOrder(int[][] matrix)
@@ -36,6 +37,7 @@ public class SpiralOrder
         int c1 = 0;
         int c2 = matrix[0].length - 1;
 
+        // 确定边界，缩小边界
         while (r1 <= r2 && c1 <= c2) {
             for (int c = c1; c <= c2; c++) {
                 ans.add(matrix[r1][c]);
@@ -46,6 +48,7 @@ public class SpiralOrder
 
             }
 
+            // 最内层防止重复添加
             if (r1 < r2 && c1 < c2) {
                 for (int c = c2 - 1; c > c1; c--) {
                     ans.add(matrix[r2][c]);

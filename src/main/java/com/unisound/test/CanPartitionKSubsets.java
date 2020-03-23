@@ -26,17 +26,16 @@ public class CanPartitionKSubsets
 
         for (int num : nums) {
             sum += num;
-            maxNum = Math.max(maxNum, num);
+            maxNum = Math.max(num, maxNum);
         }
 
         int target = sum / k;
 
-        if (target % 2 > 0 || maxNum > target) {
+        if (sum % k > 0 || maxNum > target) {
             return false;
         }
 
-        boolean[] used = new boolean[nums.length + 1];
-
+        boolean[] used = new boolean[nums.length];
         return backpack(nums, k, target, 0, 0, used);
 
     }
@@ -54,13 +53,13 @@ public class CanPartitionKSubsets
         for (int i = start; i < nums.length; i++) {
             if (!used[i] && cur + nums[i] <= target) {
                 used[i] = true;
-                if (backpack(nums, k, target, cur + nums[i], i + 1, used)) {
+                if (backpack(nums, k, target, cur + nums[i], i + 1, used))
                     return true;
-                }
-
                 used[i] = false;
             }
+
         }
+
         return false;
 
     }

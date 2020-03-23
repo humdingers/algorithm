@@ -20,7 +20,7 @@ package com.unisound.dp;
  */
 public class NumSquares
 {
-    public int numSquares(int n)
+    public static int numSquares(int n)
     {
         int dp[] = new int[n + 1];
 
@@ -39,7 +39,7 @@ public class NumSquares
 
     public static void main(String[] args)
     {
-        // TODO Auto-generated method stub
+        System.out.println(numSquares(16));
 
     }
 

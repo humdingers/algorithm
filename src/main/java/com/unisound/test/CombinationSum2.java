@@ -31,21 +31,22 @@ public class CombinationSum2
 
     public List<List<Integer>> combinationSum2(int[] candidates, int target)
     {
-        List<List<Integer>> res = new ArrayList<List<Integer>>();
 
+        List<List<Integer>> res = new ArrayList<List<Integer>>();
         if (candidates == null || candidates.length == 0) {
             return res;
         }
 
-        List<Integer> track = new ArrayList<Integer>();
         Arrays.sort(candidates);
+        List<Integer> track = new ArrayList<Integer>();
 
-        backpack(0, candidates, target, track, res);
+        backpack(candidates, target, track, 0, res);
 
         return res;
+
     }
 
-    public void backpack(int start, int[] candidates, int target, List<Integer> track, List<List<Integer>> res)
+    public void backpack(int[] candidates, int target, List<Integer> track, int start, List<List<Integer>> res)
     {
         if (target < 0) {
             return;
@@ -58,12 +59,13 @@ public class CombinationSum2
                 if (i > start && candidates[i] == candidates[i - 1]) {
                     continue;
                 }
-                track.add(candidates[i]);
 
-                backpack(i + 1, candidates, target - candidates[i], track, res);
+                track.add(candidates[i]);
+                backpack(candidates, target - candidates[i], track, i + 1, res);
                 track.remove(track.size() - 1);
             }
         }
+
     }
 
 }

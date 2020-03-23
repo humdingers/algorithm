@@ -23,6 +23,7 @@ public class LongestOnes
     {
         int left = 0;
         int right = 0;
+
         int res = 0;
 
         while (right < A.length) {
@@ -41,6 +42,7 @@ public class LongestOnes
             }
 
             res = Math.max(res, right - left);
+
         }
 
         return res;

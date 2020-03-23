@@ -24,23 +24,24 @@ public class CanJump
             return false;
         }
 
-        int len = nums.length;
-
         boolean[] dp = new boolean[nums.length];
 
-        dp[len - 1] = true;
+        dp[nums.length - 1] = true;
 
-        for (int i = len - 1; i >= 0; i--) {
-            int jump = Math.min(i + nums[i], len - 1);
-            for (int j = i; j <= jump; j++) {
+        for (int i = nums.length - 1; i >= 0; i++) {
+            int skip = Math.max(i + nums[i], nums.length - 1);
+
+            for (int j = i; j <= skip; j++) {
                 if (dp[j]) {
                     dp[i] = true;
                     break;
                 }
             }
+
         }
 
         return dp[0];
+
     }
 
     public static void main(String[] args)

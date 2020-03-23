@@ -37,26 +37,17 @@ public class LongestPalindrome
         for (char c : s.toCharArray()) {
             tmp[c]++;
         }
-        int maxValue = 0;
 
-        int maxLetter = 0;
+        int count = 0;
         for (int i = 0; i < tmp.length; i++) {
-            if (tmp[i] > maxValue) {
-                maxValue = tmp[i];
-                maxLetter = i;
-            }
-        }
-        int res = 0;
-        for (int count : tmp) {
-            res += count / 2 * 2;
+            count += tmp[i] / 2 * 2;
 
-            if (count % 2 == 1 && res % 2 == 0) {
-                res++;
-
+            if (tmp[i] % 2 == 1 && count % 2 == 0) {
+                count++;
             }
         }
 
-        return res;
+        return count;
 
     }
 

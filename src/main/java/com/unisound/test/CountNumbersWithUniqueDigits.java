@@ -18,11 +18,14 @@ public class CountNumbersWithUniqueDigits
     {
         if (n == 0) {
             return 1;
-
         }
 
         if (n == 1) {
             return 10;
+        }
+
+        if (n > 10) {
+            return n;
         }
 
         int[] dp = new int[n + 1];
@@ -31,7 +34,6 @@ public class CountNumbersWithUniqueDigits
         dp[1] = 9;
 
         int sum = dp[0] + dp[1];
-
         for (int i = 2; i <= n; i++) {
             dp[i] = dp[i - 1] * (11 - i);
 
@@ -40,7 +42,6 @@ public class CountNumbersWithUniqueDigits
         }
 
         return sum;
-
     }
 
 }

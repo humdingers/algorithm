@@ -15,27 +15,25 @@ public class MinSubArrayLen
 {
     public int minSubArrayLen(int s, int[] nums)
     {
+
         int left = 0;
         int right = 0;
+
         int res = Integer.MAX_VALUE;
 
         int sum = 0;
-
         while (right < nums.length) {
-
-            if (sum < s) {
-                sum += nums[right];
-            }
+            sum += nums[right];
 
             right++;
+
             while (sum >= s) {
-
                 res = Math.min(res, right - left);
-
                 sum -= nums[left];
-                left--;
+                left++;
 
             }
+
         }
 
         return res == Integer.MAX_VALUE ? -1 : res;

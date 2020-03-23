@@ -22,6 +22,7 @@ public class MaxSubArray
         }
 
         int sum = 0;
+
         int res = nums[0];
         for (int num : nums) {
             if (sum + num > num) {
@@ -29,8 +30,8 @@ public class MaxSubArray
             } else {
                 sum = num;
             }
-
             res = Math.max(res, sum);
+
         }
 
         return res;

@@ -23,31 +23,35 @@ public class DecodeString
     {
         LinkedList<String> stack_res = new LinkedList<String>();
         LinkedList<Integer> stack_multi = new LinkedList<Integer>();
+
         StringBuilder res = new StringBuilder();
         int multi = 0;
+
         for (char c : s.toCharArray()) {
             if (c == '[') {
-                stack_multi.addLast(multi);
                 stack_res.addLast(res.toString());
-                multi = 0;
+                stack_multi.addLast(multi);
                 res = new StringBuilder();
+                multi = 0;
             } else if (c == ']') {
-                int curmulti = stack_multi.removeLast();
                 StringBuilder tmp = new StringBuilder();
-                for (int i = 0; i < curmulti; i++) {
-                    tmp.append(res);
+                int cur_multi = stack_multi.removeLast();
+
+                for (int i = 0; i < cur_multi; i++) {
+                    tmp.append(res.toString());
                 }
 
                 res = new StringBuilder(stack_res.removeLast() + tmp);
 
             } else if (c >= '0' && c <= '9') {
-                multi = multi * 10 + Integer.valueOf(c + "");
+                multi = 10 * multi + Integer.valueOf(c + "");
             } else {
                 res.append(c);
             }
         }
 
         return res.toString();
+
     }
 
 }

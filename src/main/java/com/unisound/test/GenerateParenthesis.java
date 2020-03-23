@@ -23,27 +23,23 @@ public class GenerateParenthesis
     public List<String> generateParenthesisBackPack(int n)
     {
         List<String> res = new ArrayList<String>();
-        if (n <= 0) {
-            return res;
-        }
 
         backpack("", n, n, res);
 
         return res;
     }
 
-    // n对括号，说明左括号n，右括号n，然后
-    public void backpack(String subRes, int left, int right, List<String> res)
+    public void backpack(String cur, int left, int right, List<String> res)
     {
         if (left == 0 && right == 0) {
-            res.add(subRes);
+            res.add(cur);
         } else {
             if (left > 0) {
-                backpack(subRes + "(", left - 1, right, res);
+                backpack(cur + "(", left - 1, right, res);
             }
 
             if (left < right) {
-                backpack(subRes + ")", left, right - 1, res);
+                backpack(cur + ")", left, right - 1, res);
             }
         }
 

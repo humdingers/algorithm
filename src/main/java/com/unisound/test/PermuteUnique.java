@@ -24,18 +24,21 @@ public class PermuteUnique
     public List<List<Integer>> permuteUnique(int[] nums)
     {
         List<List<Integer>> res = new ArrayList<List<Integer>>();
+
         if (nums == null || nums.length == 0) {
             return res;
         }
+
+        boolean[] flag = new boolean[nums.length];
+
         List<Integer> track = new ArrayList<Integer>();
 
         Arrays.sort(nums);
 
-        boolean[] flag = new boolean[nums.length];
-
         backpack(nums, track, res, flag);
 
         return res;
+
     }
 
     public void backpack(int[] nums, List<Integer> track, List<List<Integer>> res, boolean[] flag)
@@ -48,19 +51,19 @@ public class PermuteUnique
                     continue;
                 }
 
-                if (i > 0 && nums[i] == nums[i - 1] && !flag[i - 1]) {
+                if (i > 0 && nums[i - 1] == nums[i] && !flag[i]) {
                     continue;
-
                 }
+
                 track.add(nums[i]);
                 flag[i] = true;
                 backpack(nums, track, res, flag);
                 track.remove(track.size() - 1);
-
                 flag[i] = false;
 
             }
         }
+
     }
 
 }

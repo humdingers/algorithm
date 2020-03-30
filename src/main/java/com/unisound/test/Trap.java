@@ -16,6 +16,7 @@ public class Trap
     {
         if (height == null || height.length == 0) {
             return 0;
+
         }
 
         int left = 0;
@@ -23,7 +24,6 @@ public class Trap
 
         int leftMax = height[0];
         int rightMax = height[height.length - 1];
-
         int res = 0;
 
         while (left <= right) {
@@ -33,6 +33,7 @@ public class Trap
             if (leftMax < rightMax) {
                 res += leftMax - height[left];
                 left++;
+
             } else {
                 res += rightMax - height[right];
                 right--;

@@ -15,20 +15,19 @@ public class PermuteStr
 
     public ArrayList<String> Permutation(String str)
     {
-        ArrayList<String> result = new ArrayList<String>();
+        ArrayList<String> res = new ArrayList<String>();
         if (str == null || str.length() == 0) {
-            return result;
+            return res;
         }
+        TreeSet<String> result = new TreeSet<String>();
 
         char[] chars = str.toCharArray();
 
-        TreeSet<String> tmp = new TreeSet<String>();
+        backpack(chars, 0, result);
 
-        backpack(chars, 0, tmp);
+        res.addAll(result);
 
-        result.addAll(tmp);
-
-        return result;
+        return res;
 
     }
 
@@ -43,10 +42,8 @@ public class PermuteStr
         } else {
             for (int i = begin; i < chars.length; i++) {
                 swap(chars, begin, i);
-
                 backpack(chars, begin + 1, result);
-
-                swap(chars, i, begin);
+                swap(chars, begin, i);
             }
         }
 
@@ -54,7 +51,6 @@ public class PermuteStr
 
     public void swap(char[] x, int a, int b)
     {
-
         char tmp = x[a];
         x[a] = x[b];
         x[b] = tmp;

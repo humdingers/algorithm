@@ -19,17 +19,20 @@ public class RecorganizeString
     {
         int[] tmp = new int[26];
 
+        int maxValue = 0;
+        int maxLetter = 0;
+
         for (char c : S.toCharArray()) {
             tmp[c - 'a']++;
         }
-        int maxValue = 0;
 
-        int maxLetter = 0;
-        for (int i = 0; i < tmp.length; i++) {
-            if (tmp[i] > maxValue) {
-                maxValue = tmp[i];
-                maxLetter = i;
+        int index = 0;
+        for (int count : tmp) {
+            if (count > maxValue) {
+                maxValue = count;
+                maxLetter = index;
             }
+            index += 1;
         }
 
         if (maxValue > (S.length() + 1) / 2) {
@@ -37,28 +40,28 @@ public class RecorganizeString
         }
 
         char[] res = new char[S.length()];
-        int index = 0;
+
+        int indice = 0;
         while (tmp[maxLetter] > 0) {
-            res[index] = (char) (maxLetter + 'a');
+            res[indice] = (char) (maxLetter + 'a');
             tmp[maxLetter]--;
-            index += 2;
+            indice += 2;
         }
+
         for (int i = 0; i < tmp.length; i++) {
             while (tmp[i] > 0) {
-                if (index >= S.length()) {
-                    index = 1;
+                if (indice >= S.length()) {
+                    indice = 1;
                 }
 
-                res[index] = (char) (i + 'a');
+                res[indice] = (char) (i + 'a');
                 tmp[i]--;
-
-                index += 2;
+                indice += 2;
             }
 
         }
 
-        return new String(res);
-
+        return String.valueOf(res);
     }
 
 }

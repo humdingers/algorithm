@@ -38,20 +38,20 @@ public class Subsets
 
         List<Integer> track = new ArrayList<Integer>();
 
-        backpack(0, nums, track, res);
+        backpack(nums, 0, track, res);
 
         return res;
     }
 
-    public void backpack(int start, int[] nums, List<Integer> track, List<List<Integer>> res)
+    public void backpack(int[] nums, int start, List<Integer> track, List<List<Integer>> res)
     {
         res.add(new ArrayList<Integer>(track));
 
         for (int i = start; i < nums.length; i++) {
             track.add(nums[i]);
-            backpack(i + 1, nums, track, res);
+            backpack(nums, i + 1, track, res);
             track.remove(track.size() - 1);
         }
-
     }
+
 }

@@ -22,49 +22,51 @@ public class ThreeSums
 {
     public static List<List<Integer>> threeSum(int[] nums)
     {
-        List<List<Integer>> ans = new ArrayList<List<Integer>>();
+        List<List<Integer>> res = new ArrayList<List<Integer>>();
+
         int len = nums.length;
+
         if (nums == null || len < 3) {
-            return ans;
+            return res;
         }
+
         Arrays.sort(nums);
 
-        for (int i = 0; i < len; i++) {
+        for (int i = 0; i < nums.length; i++) {
             if (nums[i] > 0) {
                 break;
             }
+
             if (i > 0 && nums[i] == nums[i - 1]) {
                 continue;
             }
 
-            int L = i + 1;
-            int R = len - 1;
+            int left = i + 1;
+            int right = nums.length - 1;
 
-            while (L < R) {
-                int sum = nums[i] + nums[L] + nums[R];
+            while (left < right) {
+                int sum = nums[i] + nums[left] + nums[right];
 
                 if (sum == 0) {
-                    ans.add(Arrays.asList(nums[i], nums[L], nums[R]));
-                    while (L < R && nums[L] == nums[L + 1]) {
-                        L++;
+                    res.add(Arrays.asList(nums[i], nums[left], nums[left]));
+                    while (left < right && nums[left] == nums[left + 1]) {
+                        left++;
                     }
-
-                    while (L < R && nums[R] == nums[R - 1]) {
-                        R--;
+                    while (left < right && nums[right] == nums[right - 1]) {
+                        right--;
                     }
-
-                    L++;
-                    R--;
                 } else if (sum < 0) {
-                    L++;
-                } else if (sum > 0) {
-                    R--;
+                    left++;
+                } else {
+                    right--;
                 }
 
+                left++;
+                right--;
             }
-
         }
-        return ans;
+
+        return res;
 
     }
 

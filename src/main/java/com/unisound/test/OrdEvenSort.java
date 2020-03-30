@@ -8,7 +8,7 @@ public class OrdEvenSort
 {
     private static void mysort(int[] array)
     {
-        if (array == null) {
+        if (array == null || array.length == 0) {
             return;
         }
 
@@ -20,7 +20,7 @@ public class OrdEvenSort
                 left++;
             }
 
-            while (left < right && isEven(array[right])) {
+            while (left < right && !isEven(array[right])) {
                 right--;
             }
 
@@ -33,7 +33,6 @@ public class OrdEvenSort
             if (left >= right) {
                 break;
             }
-
         }
 
     }

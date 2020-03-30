@@ -68,6 +68,10 @@ public class CanPartition
             dp[0][nums[0]] = true;
         }
 
+        for (int i = 0; i < nums.length; i++) {
+            dp[i][0] = true;
+        }
+
         // 1、不选择 nums[i]，如果在 [0, i - 1] 这个子区间内已经有一部分元素，使得它们的和为 j ，那么 dp[i][j] = true；
 
         // 2、选择 nums[i]，如果在 [0, i - 1] 这个子区间内就得找到一部分元素，使得它们的和为 j - nums[i]。

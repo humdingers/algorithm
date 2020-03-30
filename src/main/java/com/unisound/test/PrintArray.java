@@ -10,13 +10,15 @@ public class PrintArray
         if (n <= 0) {
             return;
         }
+
         int[] track = new int[n];
-        printArray(track, 0);
+
+        backpack(track, 0);
     }
 
-    public static void printArray(int[] track, int n)
+    public static void backpack(int[] track, int n)
     {
-        if (n == track.length) {
+        if (track.length == n) {
             boolean flag = false;
             for (int j = 0; j < track.length; j++) {
                 if (track[j] != 0) {
@@ -25,6 +27,7 @@ public class PrintArray
 
                 if (flag) {
                     System.out.print(track[j]);
+
                 }
             }
 
@@ -35,10 +38,9 @@ public class PrintArray
         } else {
             for (int i = 0; i <= 9; i++) {
                 track[n] = i;
-                printArray(track, n + 1);
+                backpack(track, n + 1);
             }
         }
-
     }
 
     public static void main(String[] args)

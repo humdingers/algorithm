@@ -26,12 +26,12 @@ public class WorkBreak
 
         Set<String> tmp = new HashSet<String>(wordDict);
 
-        boolean dp[] = new boolean[s.length() + 1];
+        boolean[] dp = new boolean[s.length() + 1];
 
         dp[0] = true;
 
-        for (int i = 1; i <= s.length(); i++) {
-            for (int j = 1; j <= i; j++) {
+        for (int i = 0; i <= s.length(); i++) {
+            for (int j = 0; j < i; j++) {
                 if (dp[j] && tmp.contains(s.substring(j, i))) {
                     dp[i] = true;
                     break;
@@ -40,7 +40,6 @@ public class WorkBreak
         }
 
         return dp[s.length()];
-
     }
 
 }

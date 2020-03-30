@@ -27,6 +27,7 @@ public class NumDecoding
         }
 
         int len = s.length();
+
         int[] dp = new int[len + 1];
 
         dp[len] = 1;
@@ -40,7 +41,7 @@ public class NumDecoding
                 continue;
             }
 
-            if ((s.charAt(i) - '0') * 10 + (s.charAt(i + 1) - '0') <= 26) {
+            if ((s.charAt(i) - '0') * 10 + s.charAt(i + 1) - '0' <= 26) {
                 dp[i] = dp[i + 1] + dp[i + 2];
             } else {
                 dp[i] = dp[i + 1];
@@ -48,6 +49,7 @@ public class NumDecoding
         }
 
         return dp[0];
+
     }
 
 }

@@ -9,6 +9,7 @@ public class quick_sort
         if (startIndex >= endIndex) {
             return;
         }
+
         int privotIndex = partition(arr, startIndex, endIndex);
 
         quicksort(arr, startIndex, privotIndex - 1);
@@ -23,11 +24,12 @@ public class quick_sort
         for (int i = startIndex + 1; i <= endIndex; i++) {
             if (arr[i] < privot) {
                 mark++;
-                int p = arr[mark];
+                int tmp = arr[mark];
                 arr[mark] = arr[i];
-                arr[i] = p;
+                arr[i] = tmp;
             }
         }
+
         arr[startIndex] = arr[mark];
         arr[mark] = privot;
 

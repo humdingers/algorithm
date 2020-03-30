@@ -80,7 +80,7 @@ public class BubleSort
                     nums[j] = nums[j + 1];
                     nums[j + 1] = tmp;
 
-                    isSorted = false; // 如果有交换，说明不是有序的
+                    isSorted = false; // 如果有交换，说明不是有序的的
                     lastExchange = j;
 
                 }

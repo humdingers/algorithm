@@ -1,4 +1,4 @@
-package com.unisound.slide.window;
+package com.unisound.test;
 
 import java.util.ArrayDeque;
 
@@ -28,7 +28,7 @@ class MonotonicQueue
 
     void pop(int n)
     {
-        if (!deq.isEmpty() && deq.getFirst() == n) {
+        while (!deq.isEmpty() && deq.getFirst() == n) {
             deq.removeFirst();
         }
     }
@@ -37,6 +37,7 @@ class MonotonicQueue
 
 public class MaxSlidingWindow
 {
+
     public int[] maxSlidingWindow(int[] nums, int k)
     {
         int n = nums.length;
@@ -55,11 +56,11 @@ public class MaxSlidingWindow
 
         for (int i = 0; i < n; i++) {
             if (i < k - 1) {
-                window.push(nums[i]);
+                window.push(n);
             } else {
-                window.push(nums[i]);
+                window.push(n);
                 res[i - k + 1] = window.max();
-                window.pop(nums[i - k + 1]);
+                window.pop(n);
             }
 
         }

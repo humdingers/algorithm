@@ -13,6 +13,7 @@ public class CutRope
         if (n == 2) {
             return 1;
         }
+
         if (n == 3) {
             return 2;
         }
@@ -25,12 +26,11 @@ public class CutRope
 
         for (int i = 4; i <= n; i++) {
             for (int j = 1; j <= i / 2; j++) {
-                dp[i] = Math.max(dp[i], dp[i - j] * dp[j]);
+                dp[i] = Math.max(dp[i], dp[j] * dp[i - j]);
             }
         }
 
         return dp[n];
-
     }
 
 }

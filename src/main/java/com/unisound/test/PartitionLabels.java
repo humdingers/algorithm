@@ -22,28 +22,23 @@ public class PartitionLabels
     {
         int[] tmp = new int[26];
 
-        char[] chars = S.toCharArray();
         for (int i = 0; i < S.length(); i++) {
-            tmp[chars[i] - 'a'] = i;
+            tmp[S.charAt(i) - 'a'] = i;
         }
 
-        int lastIndex = 0;
         List<Integer> res = new ArrayList<Integer>();
-
+        int lastIndex = 0;
         int start = 0;
-        for (int j = 0; j < chars.length; j++) {
-            lastIndex = Math.max(lastIndex, tmp[chars[j] - 'a']);
+        for (int i = 0; i < S.length(); i++) {
+            lastIndex = Math.max(lastIndex, tmp[S.charAt(i) - 'a']);
 
-            if (lastIndex == j) {
+            if (lastIndex == i) {
                 res.add(lastIndex - start + 1);
-
                 start = lastIndex + 1;
-
             }
-
         }
-        return res;
 
+        return res;
     }
 
 }

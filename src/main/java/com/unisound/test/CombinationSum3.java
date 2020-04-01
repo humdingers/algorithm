@@ -15,7 +15,7 @@ import java.util.List;
  
  输入: k = 3, n = 7
  输出: [[1,2,4]]
-
+c9 k
 */
 public class CombinationSum3
 {
@@ -25,13 +25,12 @@ public class CombinationSum3
 
         List<Integer> track = new ArrayList<Integer>();
 
-        backpack(k, n, track, 1, res);
+        backpack(k, n, 1, track, res);
 
         return res;
-
     }
 
-    public void backpack(int k, int n, List<Integer> track, int start, List<List<Integer>> res)
+    public void backpack(int k, int n, int start, List<Integer> track, List<List<Integer>> res)
     {
         if (track.size() == k && n == 0) {
             res.add(new ArrayList<Integer>(track));
@@ -41,7 +40,7 @@ public class CombinationSum3
             for (int i = start; i <= 9; i++) {
                 if (n - i >= 0) {
                     track.add(i);
-                    backpack(k, n - i, track, i + 1, res);
+                    backpack(k, n - i, i + 1, track, res);
                     track.remove(track.size() - 1);
                 }
             }

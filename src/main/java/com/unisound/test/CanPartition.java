@@ -21,21 +21,18 @@ public class CanPartition
 {
     public boolean canPartition(int[] nums)
     {
-
         if (nums == null || nums.length == 0) {
             return false;
         }
 
-        int len = nums.length;
-
         int sum = 0;
+
         for (int num : nums) {
             sum += num;
         }
 
         int target = sum / 2;
-
-        if (sum % 2 > 0) {
+        if (sum % 2 == 1) {
             return false;
         }
 
@@ -48,11 +45,13 @@ public class CanPartition
         for (int i = 1; i < nums.length; i++) {
             for (int j = 0; j <= target; j++) {
                 dp[i][j] = dp[i - 1][j];
+
                 if (nums[i] == j) {
                     dp[i][j] = true;
-                } else if (nums[i] < j) { // 选择与不选择
+                } else if (nums[i] < j) {
                     dp[i][j] = dp[i - 1][j] || dp[i - 1][j - nums[i]];
                 }
+
             }
 
             if (dp[i][target]) {
@@ -60,7 +59,7 @@ public class CanPartition
             }
         }
 
-        return dp[len - 1][target];
+        return dp[nums.length - 1][target];
     }
 
 }

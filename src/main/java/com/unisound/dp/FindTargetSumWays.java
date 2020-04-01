@@ -70,6 +70,41 @@ public class FindTargetSumWays
     // 时间复杂度：O(N*sum)
     public int findTargetSumWaysDp(int[] nums, int S)
     {
+        if (nums.length == 0) {
+            return 0;
+        }
+
+        int sum = 0;
+        for (int num : nums) {
+            sum += num;
+        }
+
+        // corner case: when S is out of range [-sum, sum]
+        if (S < -sum || S > sum) {
+            return 0;
+        }
+
+        int[][] dp = new int[nums.length + 1][sum * 2 + 1];
+        dp[0][sum] = 1;
+        int leftBound = 0;
+        int rightBound = sum * 2;
+        for (int i = 1; i <= nums.length; i++) {
+            for (int j = leftBound; j < rightBound + 1; j++) {
+                // try all possible sum of (previous sum j + current number nums[i - 1]) and all possible difference of
+                // (previous sum j - current number nums[i - 1])
+                if (j + nums[i - 1] <= rightBound) {
+                    dp[i][j] += dp[i - 1][j + nums[i - 1]];
+                }
+                if (j - nums[i - 1] >= leftBound) {
+                    dp[i][j] += dp[i - 1][j - nums[i - 1]];
+                }
+            }
+        }
+        return dp[nums.length][sum + S];
+    }
+
+    public int findTargetSumWaysDp1(int[] nums, int S)
+    {
 
         int[][] dp = new int[nums.length][2001];
         // 用 dp[i][j] 表示用数组中的前 i 个元素，组成和为 j 的方案数。考虑第 i 个数 nums[i]，它可以被添加 + 或 -

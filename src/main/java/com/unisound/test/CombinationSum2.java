@@ -24,7 +24,7 @@ import java.util.List;
     [2, 6],
     [1, 1, 6]
   ]
-
+ O(2^n)
 */
 public class CombinationSum2
 {

@@ -21,27 +21,28 @@ import java.util.List;
     [7],
     [2,2,3]
   ]
+ O(2^n)
 */
 public class CombinationSum
 {
 
     public List<List<Integer>> combinationSum(int[] candidates, int target)
     {
-
         List<List<Integer>> res = new ArrayList<List<Integer>>();
+
         if (candidates == null || candidates.length == 0) {
             return res;
         }
 
         List<Integer> track = new ArrayList<Integer>();
 
-        backpack(candidates, target, track, 0, res);
+        backpack(candidates, target, 0, track, res);
 
         return res;
 
     }
 
-    public void backpack(int[] candidates, int target, List<Integer> track, int start, List<List<Integer>> res)
+    public void backpack(int[] candidates, int target, int start, List<Integer> track, List<List<Integer>> res)
     {
         if (target < 0) {
             return;
@@ -51,9 +52,8 @@ public class CombinationSum
             res.add(new ArrayList<Integer>(track));
         } else {
             for (int i = start; i < candidates.length; i++) {
-
                 track.add(candidates[i]);
-                backpack(candidates, target - candidates[i], track, i, res);
+                backpack(candidates, target - candidates[i], i, track, res);
                 track.remove(track.size() - 1);
             }
         }

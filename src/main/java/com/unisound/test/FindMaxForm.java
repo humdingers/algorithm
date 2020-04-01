@@ -32,11 +32,11 @@ public class FindMaxForm
             int[] count = counts(str);
 
             for (int i = m; i >= count[0]; i--) {
-                for (int j = n; j >= count[1]; j--) {
-                    dp[i][j] = Math.max(dp[i - count[0]][j - count[1]] + 1, dp[i][j]);
+                for (int j = n; j > count[1]; j--) {
+                    dp[i][j] = Math.max(dp[i][j], dp[i - count[0]][j - count[1]] + 1);
+
                 }
             }
-
         }
 
         return dp[m][n];
@@ -52,6 +52,7 @@ public class FindMaxForm
         }
 
         return count;
+
     }
 
 }

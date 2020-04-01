@@ -12,6 +12,7 @@ package com.unisound.test;
   输入: "abc"
   输出: 3
   解释: 三个回文子串: "a", "b", "c".
+ O(N^2)
 */
 public class CountSubstrings
 {

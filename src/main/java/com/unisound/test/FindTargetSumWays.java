@@ -44,21 +44,31 @@ public class FindTargetSumWays
     // 时间复杂度：O(2^N)，其中 N 是数组 nums 的长度
     public int findTargetSumWays(int[] nums, int S)
     {
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+
         backpack(nums, S, 0, 0);
 
         return count;
 
     }
 
-    public void backpack(int[] nums, int S, int cur, int start)
+    public void backpack(int nums[], int S, int cur, int start)
     {
+        if (start > nums.length) {
+            return;
+        }
+
         if (start == nums.length) {
             if (cur == S) {
                 count++;
             }
-        } else if (start < nums.length) {
+        } else {
+
             backpack(nums, S, cur + nums[start], start + 1);
             backpack(nums, S, cur - nums[start], start + 1);
+
         }
 
     }
@@ -70,14 +80,15 @@ public class FindTargetSumWays
         dp[0][nums[0] + 1000] = 1;
         dp[0][-nums[0] + 1000] += 1;
 
-        for (int i = 1; i < nums.length; i++) {
+        for (int i = 0; i < nums.length; i++) {
             for (int sum = -1000; sum <= 1000; sum++) {
                 if (dp[i - 1][sum + 1000] > 0) {
                     dp[i][sum + nums[i] + 1000] += dp[i - 1][sum + 1000];
+
                     dp[i][sum - nums[i] + 1000] += dp[i - 1][sum + 1000];
+
                 }
             }
-
         }
 
         return S > 1000 ? 0 : dp[nums.length - 1][S + 1000];

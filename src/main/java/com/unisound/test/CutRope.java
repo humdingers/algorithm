@@ -26,11 +26,12 @@ public class CutRope
 
         for (int i = 4; i <= n; i++) {
             for (int j = 1; j <= i / 2; j++) {
-                dp[i] = Math.max(dp[i], dp[j] * dp[i - j]);
+                dp[i] = Math.max(dp[i], dp[i - j] * dp[j]);
             }
         }
 
         return dp[n];
+
     }
 
 }

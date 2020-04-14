@@ -17,6 +17,7 @@ package com.unisound.dp;
     0 < nums[i] < 10000
 
  */
+// O(k*2^n)
 public class CanPartitionKSubsets
 {
     public boolean canPartitionKSubsets(int[] nums, int k)

@@ -1,4 +1,4 @@
-package com.unisound.algorithm;
+package com.unisound.depthPriority;
 
 // 1～n整数中1出现的次数
 /*

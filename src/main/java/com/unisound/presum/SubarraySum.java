@@ -1,4 +1,4 @@
-package com.unisound.algorithm;
+package com.unisound.presum;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -41,6 +41,7 @@ public class SubarraySum
         Map<Integer, Integer> tmp = new HashMap<Integer, Integer>();
 
         tmp.put(0, 1);
+        // sum-k + k = sum， sum-k
         for (int i = 0; i < nums.length; i++) {
             sum += nums[i];
             if (tmp.containsKey(sum - k)) {

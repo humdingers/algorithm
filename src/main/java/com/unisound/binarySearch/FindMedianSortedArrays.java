@@ -1,4 +1,4 @@
-package com.unisound.algorithm;
+package com.unisound.binarySearch;
 
 //寻找两个有序数组的中位数
 

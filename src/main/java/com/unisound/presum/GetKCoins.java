@@ -1,4 +1,4 @@
-package com.unisound.algorithm;
+package com.unisound.presum;
 
 //有n个硬币排成一排，每次要你从最左边或者最右侧拿出一个硬币。总共拿k次。
 //写一个算法，使能拿到的硬币的和最大。

@@ -40,6 +40,24 @@ public class CanJump
 
     }
 
+    public boolean canJumpGreedy(int[] nums)
+    {
+        int n = nums.length;
+        int farthest = 0;
+
+        for (int i = 0; i < n; i++) {
+            if (i <= farthest) {
+                farthest = Math.max(farthest, i + nums[i]);
+                if (farthest >= n - 1) {
+                    return true;
+
+                }
+            }
+        }
+
+        return false;
+    }
+
     public static void main(String[] args)
     {
         // TODO Auto-generated method stub

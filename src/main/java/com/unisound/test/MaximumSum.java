@@ -21,6 +21,12 @@ package com.unisound.test;
 输出：3
 解释：我们直接选出 [3]，这就是最大和
  */
+/*
+ * 子数组和的最大值可以用典型的lcs。
+求删除一个元素后的子数组的最大和，可以用递推公式ans = max(ans,left[i-1] + right[i+1])ans=max(ans,left[i−1]+right[i+1])
+left[i]表示从左到右以第i个元素结尾的最大子数组和，right[i]代表从右到左以第i个元素为结尾的最大子数组和.
+
+ */
 public class MaximumSum
 {
     public int maximumSum(int[] arr)

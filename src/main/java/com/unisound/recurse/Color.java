@@ -1,4 +1,4 @@
-package com.unisound.algorithm;
+package com.unisound.recurse;
 
 //着色问题
 //一个圆，被分成N个部分，用M种颜色给每个部分上色，要求相邻区域颜色不能相同。有多少种上色方案？

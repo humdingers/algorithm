@@ -1,4 +1,4 @@
-package com.unisound.dp;
+package com.unisound.presum;
 
 /*
  * 1186. 删除一次得到子数组最大和

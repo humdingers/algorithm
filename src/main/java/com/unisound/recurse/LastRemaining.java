@@ -1,4 +1,4 @@
-package com.unisound.algorithm;
+package com.unisound.recurse;
 
 public class LastRemaining
 {

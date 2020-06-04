@@ -1,4 +1,4 @@
-package com.unisound.binarySearch;
+package com.unisound.test;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -46,7 +46,6 @@ public class FindRightInterval
         int len = intervals.length;
         if (len == 0) {
             return new int[0];
-
         }
 
         int[] res = new int[len];
@@ -55,53 +54,46 @@ public class FindRightInterval
         Map<Integer, Integer> map = new HashMap<Integer, Integer>();
 
         for (int i = 0; i < len; i++) {
-            map.put(intervals[i][0], i);
-
             tmp[i] = intervals[i][0];
+            map.put(intervals[i][0], i);
         }
 
         Arrays.sort(tmp);
 
         for (int i = 0; i < len; i++) {
-            int index = binarySearch(tmp, intervals[i][1]);
+            int index = search(tmp, intervals[i][1]);
 
             if (index == -1) {
                 res[i] = -1;
+            } else {
+                res[i] = map.get(index);
             }
 
-            else {
-                res[i] = map.get(tmp[index]);
-            }
         }
 
         return res;
 
     }
 
-    public int binarySearch(int[] tmp, int target)
+    public int search(int[] nums, int target)
     {
-        int len = tmp.length;
+        int left = 0;
+        int right = nums.length;
 
-        if (tmp[len - 1] < target) {
+        if (target > nums[nums.length - 1]) {
             return -1;
         }
 
-        int left = 0;
-        int right = len;
-
         while (left < right) {
             int mid = left + (right - left) / 2;
-
-            if (tmp[mid] < target) {
+            if (nums[mid] < target) {
                 left = mid + 1;
             } else {
                 right = mid;
             }
-
         }
 
         return left;
-
     }
 
 }

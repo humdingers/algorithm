@@ -58,7 +58,8 @@ public class LongestIncreasingPath
             }
 
         }
-        return cache[i][j] + 1;
+        // 自增加1保证cache数组里的结果能被修改
+        return ++cache[i][j];
 
     }
 

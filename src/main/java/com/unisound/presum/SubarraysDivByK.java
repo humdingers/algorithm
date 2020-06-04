@@ -43,11 +43,16 @@ public class SubarraysDivByK
 
         for (int num : A) {
             // num % K + K 负数取余数 的情况
+            /*
+             * 举例：K = 4，求得一个前缀为 -1 ， -1 % 4 = -1 ，3 % 4 = 3 看似 mod 的结果不相等，一个为 -1 ， 一个为 3 ，但它们应该记到一组 因为它们前缀和之差：3 - (-1) 为
+             * 4 。 4 % 4 = 0 所以要把 前缀和 -1，加上 K ，转成正数的 3
+             */
             count[(num % K + K) % K]++;
         }
 
         int ans = 0;
         for (int c : count) {
+            // 组合，相同的c两两组合，Cn 2
             ans += (c * (c - 1)) / 2;
         }
 

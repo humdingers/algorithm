@@ -32,7 +32,7 @@ import java.util.Arrays;
 public class CoinChange
 {
 
-    // O(Sn)，其中 SS 是金额，nn 是面额数。
+    // O(Sn)，其中 S 是金额，n 是面额数。
     public int coinChange(int[] coins, int amount)
     {
         int max = amount + 1;

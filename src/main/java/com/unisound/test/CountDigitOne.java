@@ -52,27 +52,25 @@ public class CountDigitOne
         return dfs(n);
     }
 
-    private int dfs(int n)
+    public int dfs(int n)
     {
         if (n <= 0) {
             return 0;
         }
 
-        String str = String.valueOf(n);
+        String tmp = String.valueOf(n);
 
-        int high = str.charAt(0) - '0';
+        int high = tmp.charAt(0) - '0';
 
-        int pow = (int) Math.pow(10, str.length() - 1);
+        int pow = (int) Math.pow(10, tmp.length() - 1);
 
-        int last = n - high * pow;
+        int last = high - pow;
 
         if (high == 1) {
 
-            return dfs(pow - 1) + dfs(last) + last + 1;
+            return last + 1 + dfs(pow - 1) + dfs(last);
         } else {
-
-            return dfs(pow - 1) * high + pow + dfs(last);
-
+            return pow + high * dfs(pow - 1) + dfs(last);
         }
 
     }

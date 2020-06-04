@@ -1,4 +1,4 @@
-package com.unisound.broardPriority;
+package com.unisound.test;
 
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -49,54 +49,48 @@ public class FindOrder
 
         HashSet<Integer>[] adj = new HashSet[numCourses];
 
+        int[] indegree = new int[numCourses];
+
         for (int i = 0; i < numCourses; i++) {
             adj[i] = new HashSet<Integer>();
         }
 
-        int[] inDegree = new int[numCourses];
-
-        for (int[] p : prerequisites) {
-            adj[p[1]].add(p[0]);
-            inDegree[p[0]]++;
+        for (int i = 0; i < prerequisites.length; i++) {
+            adj[prerequisites[i][1]].add(prerequisites[i][0]);
+            ++indegree[prerequisites[i][0]];
         }
 
         Queue<Integer> queue = new LinkedList<Integer>();
 
         for (int i = 0; i < numCourses; i++) {
-            if (inDegree[i] == 0) {
+            if (indegree[i] == 0) {
                 queue.offer(i);
             }
         }
 
         int[] res = new int[numCourses];
         int count = 0;
-
         while (!queue.isEmpty()) {
-            // 当前入度为 0 的结点
             Integer head = queue.poll();
+
             res[count] = head;
             count++;
 
             Set<Integer> next = adj[head];
 
-            for (Integer item : next) {
-                inDegree[item]--;
-                // 马上检测该结点的入度是否为 0，如果为 0，马上加入队列
-                if (inDegree[item] == 0) {
+            for (int item : next) {
+                indegree[item]--;
+                if (indegree[item] == 0) {
                     queue.offer(item);
                 }
             }
-
         }
 
-        // 如果结果集中的数量不等于结点的数量，就不能完成课程任务，这一点是拓扑排序的结论
-
-        if (count == numCourses) {
+        if (numCourses == count) {
             return res;
         }
 
         return new int[0];
-
     }
 
 }

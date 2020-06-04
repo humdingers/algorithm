@@ -1,4 +1,4 @@
-package com.unisound.backpack;
+package com.unisound.test;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,39 +16,38 @@ import java.util.List;
      输入：S = "ab"
      输出：["ab", "ba"]
  */
-//O(N!)
-
-public class permutateUniqueStr
+public class PermutateUniqueStr
 {
     public String[] permutation(String S)
     {
-        List<String> track = new ArrayList<>();
-        permutate(S.toCharArray(), track, 0);
+        List<String> track = new ArrayList<String>();
+        backpack(S.toCharArray(), track, 0);
         String[] res = new String[track.size()];
         for (int i = 0; i < res.length; i++) {
             res[i] = track.get(i);
         }
         return res;
+
     }
 
-    public void permutate(char[] arr, List<String> track, int first)
+    public void backpack(char[] arr, List<String> track, int start)
     {
-        if (first == arr.length - 1) {
+        if (start == arr.length - 1) {
             track.add(new String(arr));
-            return;
-        }
-        for (int i = first; i < arr.length; i++) {
-            swap(arr, first, i);
-            permutate(arr, track, first + 1);
-            swap(arr, first, i);
+        } else {
+            for (int i = start; i < arr.length; i++) {
+                swap(arr, i, start);
+                backpack(arr, track, start + 1);
+                swap(arr, i, start);
+            }
         }
     }
 
     public void swap(char[] arr, int i, int j)
     {
-        char temp = arr[i];
+        char tmp = arr[i];
         arr[i] = arr[j];
-        arr[j] = temp;
+        arr[j] = tmp;
     }
 
 }

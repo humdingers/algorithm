@@ -1,7 +1,6 @@
 package com.unisound.test;
 
 import java.util.HashSet;
-import java.util.Set;
 
 //无重复字符的最长子串
 
@@ -19,24 +18,25 @@ public class LengthOfLongestSubstring
 {
     public int lengthOfLongestSubstring(String s)
     {
-        Set<Character> window = new HashSet<Character>();
+        HashSet<Character> window = new HashSet<Character>();
+
         int left = 0;
         int right = 0;
 
-        int res = 0;
+        int ans = 0;
 
         while (left < s.length() && right < s.length()) {
-            if (!window.contains(s.charAt(right))) {
-                window.add(s.charAt(right++));
-                res = Math.max(res, right - left);
+            if (window.contains(s.charAt(right))) {
+                window.remove(s.charAt(left));
+                left++;
             } else {
-                window.remove(s.charAt(left++));
+                window.add(s.charAt(right));
+                ans = Math.max(ans, right - left);
+                right++;
             }
-
         }
 
-        return res;
-
+        return ans;
     }
 
 }

@@ -1,4 +1,4 @@
-package com.unisound.binarySearch;
+package com.unisound.test;
 
 /*
  * 山脉数组查找目标值
@@ -78,49 +78,45 @@ class FindInMountainArray
     // 特别注意：3 个辅助方法的分支出奇地一样，因此选中位数均选左中位数，才不会发生死循环
     public int findInMountainArray(int target, MountainArray mountainArr)
     {
-
-        // 先找到峰顶索引 peakIdx
         int left = 0;
         int right = mountainArr.length() - 1;
 
         while (left < right) {
             int mid = left + (right - left) / 2;
-            int midVal = mountainArr.get(mid);
 
-            // mid+1,跟后面比较，所以right为mountainArr.length() - 1
-
-            if (midVal < mountainArr.get(mid + 1)) {
+            if (mountainArr.get(mid) < mountainArr.get(mid + 1)) {
                 left = mid + 1;
+
             } else {
                 right = mid;
             }
+
         }
 
-        int peakIdx = left;
+        int peakIndex = left;
 
-        // 根据峰顶将山脉数组分为「升序数组」和「降序数组」两段，分别进行二分查找
-        int index = binarySerach(mountainArr, 0, peakIdx, target, true);
+        int index = search(target, mountainArr, 0, peakIndex, true);
 
-        return index != -1 ? index : binarySerach(mountainArr, peakIdx + 1, mountainArr.length() - 1, target, false);
+        return index != -1 ? index : search(target, mountainArr, peakIndex + 1, mountainArr.length() - 1, false);
 
     }
 
-    public int binarySerach(MountainArray mountainArr, int low, int high, int target, boolean asc)
+    public int search(int target, MountainArray mountainArr, int left, int right, boolean asc)
     {
-        while (low <= high) {
-            int mid = low + (high - low) / 2;
-            int midVal = mountainArr.get(mid);
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
 
-            if (midVal == target) {
+            int midval = mountainArr.get(mid);
+
+            if (midval == target) {
                 return mid;
             }
-
-            if (midVal < target) {
-                low = asc ? mid + 1 : low;
-                high = asc ? high : mid - 1;
+            if (midval < target) {
+                left = asc ? mid + 1 : left;
+                right = asc ? right : mid - 1;
             } else {
-                low = asc ? low : mid + 1;
-                high = asc ? mid - 1 : high;
+                left = asc ? left : mid + 1;
+                right = asc ? mid - 1 : right;
             }
         }
         return -1;

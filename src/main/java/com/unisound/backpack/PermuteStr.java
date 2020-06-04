@@ -1,6 +1,9 @@
 package com.unisound.backpack;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.TreeSet;
 
 /*
@@ -9,7 +12,22 @@ import java.util.TreeSet;
     输入描述:
     输入一个字符串,长度不超过9(可能有字符重复),字符只包括大小写字母。
  */
+//O(N!)
 //全排列
+
+/*
+ * 面试题 08.08. 有重复字符串的排列组合
+有重复字符串的排列组合。编写一种方法，计算某字符串的所有排列组合。
+
+示例1:
+
+ 输入：S = "qqe"
+ 输出：["eqq","qeq","qqe"]
+示例2:
+
+ 输入：S = "ab"
+ 输出：["ab", "ba"]
+ */
 public class PermuteStr
 {
 
@@ -87,6 +105,34 @@ public class PermuteStr
         char t = x[a];
         x[a] = x[b];
         x[b] = t;
+    }
+
+    public String[] permutation(String s)
+    {
+        List<String> track = new LinkedList<String>();
+        backpack(s.toCharArray(), track, 0);
+
+        return track.toArray(new String[track.size()]);
+
+    }
+
+    public void backpack(char[] arr, List<String> track, int start)
+    {
+        if (start == arr.length - 1) {
+            track.add(new String(arr));
+            return;
+        }
+        HashSet<Character> set = new HashSet<>();
+        for (int i = start; i < arr.length; i++) {
+            if (set.contains(arr[i])) {
+                continue;
+            }
+            set.add(arr[i]);
+            swap(arr, i, start);
+            backpack(arr, track, start + 1);
+            swap(arr, i, start);
+
+        }
     }
 
 }

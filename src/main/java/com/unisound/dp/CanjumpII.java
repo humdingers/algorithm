@@ -40,6 +40,7 @@ public class CanjumpII
         for (int i = 0; i < n - 1; i++) {
             maxPosition = Math.max(maxPosition, i + nums[i]);
 
+            // 第一步肯定要跳出去，根据第一步的跳跃距离计算第一个end，step+1;
             if (end == i) {
                 steps++;
                 end = maxPosition;

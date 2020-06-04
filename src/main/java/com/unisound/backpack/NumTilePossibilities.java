@@ -29,7 +29,7 @@ public class NumTilePossibilities
 
         Arrays.sort(charArray);
         cnt = 0;
-
+        // 类似排列，乱序的需要used记录，而子集和子序列是有序输出
         boolean[] used = new boolean[n];
 
         backpack(charArray, 0, used);

@@ -1,4 +1,4 @@
-package com.unisound.dp;
+package com.unisound.backpack;
 
 // 划分为k个相等的子集
 /*
@@ -30,7 +30,7 @@ public class CanPartitionKSubsets
         }
 
         int target = sum / k;
-
+        // 和能被k整除，最大数不能超过每一份的和
         if (sum % k > 0 || maxNum > target) {
             return false;
         }

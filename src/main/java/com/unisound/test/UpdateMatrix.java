@@ -1,4 +1,4 @@
-package com.unisound.broardPriority;
+package com.unisound.test;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -59,17 +59,17 @@ public class UpdateMatrix
             return null;
         }
 
-        int m = matrix.length;
-        int n = matrix[0].length;
+        int row = matrix.length;
+        int col = matrix[0].length;
 
-        boolean[][] visited = new boolean[m][n];
+        boolean[][] visited = new boolean[row][col];
 
         Queue<int[]> queue = new LinkedList<int[]>();
 
-        int[][] res = new int[m][n];
+        int res[][] = new int[row][col];
 
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
                 if (matrix[i][j] == 0) {
                     res[i][j] = 0;
                     visited[i][j] = true;
@@ -78,25 +78,23 @@ public class UpdateMatrix
             }
         }
 
-        int[][] directions = new int[][] {{-1, 0}, {0, -1}, {1, 0}, {0, 1}};
+        int[][] dirs = new int[][] {{-1, 0}, {1, 0}, {0, 1}, {0, -1}};
 
         while (!queue.isEmpty()) {
-            int[] tmp = queue.poll();
+            int[] head = queue.poll();
+            int x = head[0];
+            int y = head[1];
 
-            int x = tmp[0];
-            int y = tmp[1];
+            for (int[] dir : dirs) {
+                int newx = x + dir[0];
+                int newy = y + dir[1];
 
-            for (int[] direc : directions) {
-                int new_x = x + direc[0];
-                int new_y = y + direc[1];
-
-                if (new_x >= 0 && new_x < m && new_y >= 0 && new_y < n && !visited[new_x][new_y]) {
-                    res[new_x][new_y] = res[x][y] + 1;
-                    visited[new_x][new_y] = true;
-                    queue.offer(new int[] {new_x, new_y});
+                if (isArea(matrix, newx, newy) && !visited[newx][newy]) {
+                    res[x][y] += 1;
+                    visited[newx][newy] = true;
+                    queue.offer(new int[] {newx, newy});
 
                 }
-
             }
 
         }
@@ -104,50 +102,10 @@ public class UpdateMatrix
 
     }
 
-    public int[][] updateMatrixDp(int[][] matrix)
+    // 判断是否越界
+    boolean isArea(int[][] matrix, int r, int c)
     {
-        if (matrix == null || matrix.length == 0) {
-            return null;
-        }
-
-        int m = matrix.length;
-        int n = matrix[0].length;
-
-        int[][] dp = new int[m][n];
-
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
-                if (matrix[i][j] == 0) {
-                    dp[i][j] = 0;
-                } else {
-                    dp[i][j] = 10001;
-                }
-            }
-        }
-
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
-                if (i - 1 >= 0) {
-                    dp[i][j] = Math.min(dp[i][j], dp[i - 1][j] + 1);
-                }
-                if (j - 1 >= 0) {
-                    dp[i][j] = Math.min(dp[i][j], dp[i][j - 1] + 1);
-                }
-            }
-        }
-
-        for (int i = m - 1; i >= 0; i--) {
-            for (int j = n - 1; j >= 0; j--) {
-                if (i + 1 < m) {
-                    dp[i][j] = Math.min(dp[i][j], dp[i + 1][j] + 1);
-                }
-                if (j + 1 < n) {
-                    dp[i][j] = Math.min(dp[i][j], dp[i][j + 1] + 1);
-                }
-            }
-        }
-
-        return dp;
+        return (r >= 0 && c >= 0 && r < matrix.length && c < matrix[0].length);
     }
 
 }

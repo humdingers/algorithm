@@ -1,4 +1,4 @@
-package com.unisound.backpack;
+package com.unisound.test;
 
 /*
  * 60. 第k个排列
@@ -47,48 +47,44 @@ public class GetPermutation
 {
     public String getPermutation(int n, int k)
     {
-        boolean[] used = new boolean[n + 1];
-
         int[] fac = new int[n + 1];
 
         fac[0] = 1;
-        /**
-         * 阶乘数组
-         */
+
         for (int i = 1; i <= n; i++) {
             fac[i] = fac[i - 1] * i;
+
         }
+
+        boolean[] used = new boolean[n + 1];
 
         List<Integer> track = new ArrayList<Integer>();
 
-        backpack(track, used, fac, 0, n, k);
+        backpack(fac, used, track, n, k, 0);
 
         StringBuilder res = new StringBuilder();
-        for (Integer item : track) {
-            res.append(item);
 
+        for (int i = 0; i < track.size(); i++) {
+            res.append(track.get(i));
         }
 
         return res.toString();
 
     }
 
-    /**
-     * @param index 在这一步之前已经选择了几个数字，其值恰好等于这一步需要确定的索引位置
-     * @return
-     */
-    public void backpack(List<Integer> track, boolean[] used, int[] fac, int index, int n, int k)
+    public void backpack(int[] fac, boolean[] used, List<Integer> track, int n, int k, int start)
     {
-        if (index == n || track.size() == n) {
+        if (start == n || track.size() == n) {
             return;
         }
-        // 还未确定的数字的全排列的个数，第 1 次进入的时候是 n - 1
-        int count = fac[n - 1 - index];
+
+        int count = fac[n - 1 - start];
 
         for (int i = 1; i <= n; i++) {
             if (used[i]) {
                 continue;
             }
+
             if (count < k) {
                 k -= count;
                 continue;
@@ -96,7 +92,8 @@ public class GetPermutation
 
             track.add(i);
             used[i] = true;
-            backpack(track, used, fac, index + 1, n, k);
+            backpack(fac, used, track, n, k, start + 1);
+
         }
 
     }

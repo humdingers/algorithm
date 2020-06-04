@@ -1,5 +1,4 @@
-package com.unisound.presum;
-
+package com.unisound.test;
 /*
  * 1248. 统计「优美子数组」
     给你一个整数数组 nums 和一个整数 k。
@@ -36,68 +35,32 @@ package com.unisound.presum;
 (odd[i]−odd[i−1])∗(odd[i+k]−odd[i+k−1])
 
  */
+
 public class NumberOfSubarrays
 {
-    public int numberOfSubarrays(int[] nums, int k)
-    {
-        // 奇数和奇数之间存在若干偶数，奇数满足k个，加一个偶数就是一种组合，
-        // k的最多组合区间与k-1的最多组合区间相减的差值，代表偶数区间的长度，有多少种组合
-
-        return atMostK(nums, k) - atMostK(nums, k - 1);
-
-    }
-
-    public int atMostK(int[] nums, int k)
-    {
-        int left = 0;
-        int right = 0;
-        int res = 0;
-
-        while (right < nums.length) {
-            if (nums[right] % 2 == 1) {
-                k--;
-            }
-            right++;
-
-            while (k < 0) {
-                if (nums[left] % 2 == 1) {
-                    k++;
-                }
-                left++;
-            }
-
-            res += right - left;
-        }
-        return res;
-
-    }
-
     public int numberOfSubarraysMath(int[] nums, int k)
     {
-        int len = nums.length;
         int res = 0;
-        int oddCount = 0;
-        int arr[] = new int[len + 2];
-        // 记录第oddCount个奇数的下标
-        for (int i = 0; i < len; i++) {
+        int ordcount = 0;
+        int len = nums.length;
+
+        int[] arrord = new int[len + 2];
+
+        for (int i = 0; i < nums.length; i++) {
             if ((nums[i] & 1) == 1) {
-                arr[++oddCount] = i;// 第++oddCount个奇数的下标是i
+                ordcount += 1;
+                arrord[ordcount] = i;
             }
         }
-        arr[0] = -1;// 左边界的下标
-        arr[oddCount + 1] = len;// 右边界的下标
 
-        // arr[i]是窗口左边界
-        // arr[i+k-1] 是窗口右边界
-        // arr[i-1]是左边的上一个奇数，在此之后到arr[i]都可选
-        // arr[i+k]是右边的下一个奇数，在此之前都arr[i+k-1]都可选
-        // 前面可选部分长度为arr[i]-arr[i-1]
-        // 后面可选部分长度为arr[i+k]-arr[i+k-1]
-        // 总的可能数等于前后可选的组合
+        arrord[0] = -1;
+        arrord[len + 1] = len;
 
-        for (int i = 1; i + k < oddCount + 2; i++) {
-            res += (arr[i] - arr[i - 1]) * (arr[i + k] - arr[i + k - 1]);
+        for (int i = 1; i + k < ordcount + 2; i++) {
+            res += (arrord[i] - arrord[i - 1]) * (arrord[i + k] - arrord[i + k - 1]);
+
         }
+
         return res;
     }
 

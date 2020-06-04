@@ -22,44 +22,44 @@ public class FindKthNum
     public int findKthNum(int[][] matrix, int k)
     {
         int row = matrix.length;
-        int col = matrix[0].length;
+        int cols = matrix[0].length;
 
         int low = matrix[0][0];
-        int high = matrix[row - 1][col - 1];
+        int high = matrix[row - 1][cols - 1];
 
         int count = 0;
-
         while (low <= high) {
-            int mid = low + (high - low) / 2;
+            int midval = low + (high - low) / 2;
 
-            for (int[] item : matrix) {
-                count += binarySearch(item, mid);
+            for (int[] nums : matrix) {
+                count += search(nums, midval);
+
             }
 
             if (count < k) {
-                low = mid + 1;
+                low = midval + 1;
             } else {
-                high = mid - 1;
+                high = midval - 1;
             }
-
         }
 
         return low;
     }
 
-    public int binarySearch(int[] nums, int target)
+    public int search(int[] nums, int target)
     {
         int left = 0;
-        int right = nums.length - 1;
-
-        while (left <= right) {
+        int right = nums.length;
+        while (left < right) {
             int mid = left + (right - left) / 2;
-            if (nums[mid] <= target) {
+            if (nums[mid] < target) {
                 left = mid + 1;
             } else {
-                right = mid - 1;
+                right = mid;
             }
+
         }
+
         return left;
     }
 

@@ -1,4 +1,4 @@
-package com.unisound.broardPriority;
+package com.unisound.test;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -32,55 +32,59 @@ public class MaxDistance
         int n = grid.length;
 
         Queue<int[]> queue = new LinkedList<int[]>();
-        // 将所有的陆地格子加入队列
+
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 if (grid[i][j] == 1) {
-                    queue.offer(new int[] {i, j});
+                    queue.add(new int[] {i, j});
                 }
+
             }
         }
 
-        // 如果地图上只有陆地或者海洋，返回 -1
         if (queue.isEmpty() || queue.size() == n * n) {
             return -1;
         }
 
-        int[][] direcs = new int[][] {{-1, 0}, {1, 0}, {0, 1}, {0, -1}};
-        int distance = 0; // 记录当前遍历的层数（距离） 层数就是距离
+        int distance = 0;
 
-        // 从各个陆地开始，一圈一圈的遍历海洋，最后遍历到的海洋就是离陆地最远的海洋。
+        int[][] dirs = new int[][] {{-1, 0}, {0, 1}, {0, -1}, {1, 0}};
         while (!queue.isEmpty()) {
-            distance++;
+
             int m = queue.size();
 
+            ++distance;
+
             for (int i = 0; i < m; i++) {
-                int[] tmp = queue.poll();
-                int r = tmp[0];
-                int c = tmp[1];
+                int[] head = queue.poll();
+                int x = head[0];
+                int y = head[1];
 
-                for (int[] direc : direcs) {
-                    int new_r = r + direc[0];
-                    int new_c = c + direc[1];
+                for (int[] dir : dirs) {
+                    int newx = x + dir[0];
+                    int newy = y + dir[1];
 
-                    if (isArea(grid, new_r, new_c) && grid[new_r][new_c] == 0) {
-                        grid[new_r][new_c] = 2;
-                        queue.offer(new int[] {new_r, new_c});
+                    if (isArea(grid, newx, newy) && grid[newx][newy] == 0) {
+                        grid[newx][newy] = 2;
+                        queue.offer(new int[] {newx, newy});
                     }
 
                 }
             }
 
         }
+        // 由于最后一步，没有可以扩散的的区域，但是 step 加了 1，故在退出循环的时候应该减 1
 
         return distance - 1;
 
     }
 
-    // 判断是否越界
-    boolean isArea(int[][] grid, int r, int c)
+    public boolean isArea(int[][] grid, int x, int y)
     {
-        return (r >= 0 && c >= 0 && r < grid.length && c < grid[0].length);
+        if (x >= 0 && y >= 0 && x < grid.length && y < grid.length) {
+            return true;
+        }
+        return false;
     }
 
 }

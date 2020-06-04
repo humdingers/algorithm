@@ -29,41 +29,39 @@ public class PermuteUnique
             return res;
         }
 
-        boolean[] flag = new boolean[nums.length];
-
         List<Integer> track = new ArrayList<Integer>();
 
+        boolean[] used = new boolean[nums.length];
+
         Arrays.sort(nums);
-
-        backpack(nums, track, res, flag);
-
+        backpack(res, track, nums, used);
         return res;
 
     }
 
-    public void backpack(int[] nums, List<Integer> track, List<List<Integer>> res, boolean[] flag)
+    public void backpack(List<List<Integer>> res, List<Integer> track, int[] nums, boolean[] used)
     {
         if (track.size() == nums.length) {
             res.add(new ArrayList<Integer>(track));
-        } else {
+        }
+
+        else {
             for (int i = 0; i < nums.length; i++) {
-                if (flag[i]) {
+                if (used[i]) {
                     continue;
                 }
 
-                if (i > 0 && nums[i - 1] == nums[i] && !flag[i]) {
+                if (i > 0 && nums[i] == nums[i - 1] && !used[i - 1]) {
                     continue;
                 }
-
+                used[i] = true;
                 track.add(nums[i]);
-                flag[i] = true;
-                backpack(nums, track, res, flag);
+                backpack(res, track, nums, used);
                 track.remove(track.size() - 1);
-                flag[i] = false;
+                used[i] = false;
 
             }
         }
-
     }
 
 }

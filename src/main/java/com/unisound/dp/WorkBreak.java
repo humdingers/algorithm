@@ -30,8 +30,8 @@ public class WorkBreak
 
         dp[0] = true;
 
-        for (int i = 0; i <= s.length(); i++) { // 此时的字符串状态为i的位置结尾
-            for (int j = 0; j <= i; j++) {
+        for (int i = 1; i <= s.length(); i++) { // 此时的字符串状态为i的位置结尾
+            for (int j = 0; j < i; j++) {
                 // 找i之前的位置j,是否存在j的位置状态为true,说明可以从j将0-i的字符串拆分
                 if (dp[j] && wordSet.contains(s.substring(j, i))) {
                     dp[i] = true;
@@ -42,6 +42,12 @@ public class WorkBreak
         }
         return dp[s.length()];
 
+    }
+
+    public static void main(String[] args)
+    {
+        String s = "123456";
+        System.out.print(s.substring(0, 3));
     }
 
 }

@@ -35,7 +35,8 @@ public class FindMaxForm
 
             for (int zero = m; zero >= count[0]; zero--) {
                 for (int one = n; one >= count[1]; one--) {
-                    // 当前的数 + 前面的数的情况 所以用-- 倒着来，考虑当前数时不应该，把当前数放到之前考虑
+                    // 当前的数 + 前面的数的情况(找前面还没被用的部分） 所以用-- 倒着来，考虑当前数时不应该，把当前数放到之前考虑
+                    // 此时的zero和 one满足 ，所以dp[zero - count[0]][one - count[1]] + 1
                     dp[zero][one] = Math.max(dp[zero - count[0]][one - count[1]] + 1, dp[zero][one]);
                 }
             }

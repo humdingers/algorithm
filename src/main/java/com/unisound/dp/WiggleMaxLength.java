@@ -36,7 +36,7 @@ public class WiggleMaxLength
             }
         }
 
-        return Math.max(up[nums.length - 1], down[nums.length - 1]);
+        return Math.max(up[nums.length - 1], down[nums.length - 1]) + 1;
 
     }
 
@@ -48,24 +48,35 @@ public class WiggleMaxLength
      * @return
      */
 
-    public int wiggleMaxLength1(int[] nums)
+    public static int wiggleMaxLength1(int[] nums)
     {
         if (nums == null || nums.length < 2) {
             return nums == null ? 0 : nums.length;
         }
-        int[][] dp = new int[nums.length + 1][2];
+        int[][] dp = new int[nums.length][2];
+        dp[0][0] = 1;
+        dp[0][1] = 1;
 
         for (int i = 1; i < nums.length; i++) {
             if (nums[i] - nums[i - 1] > 0) {
-                dp[i + 1][1] = Math.max(dp[i][0] + 1, dp[i][1]);
+                dp[i][1] = Math.max(dp[i - 1][0] + 1, dp[i - 1][1]);
             } else if (nums[i] - nums[i - 1] < 0) {
-                dp[i + 1][0] = Math.max(dp[i][1] + 1, dp[i][0]);
+                dp[i][0] = Math.max(dp[i - 1][1] + 1, dp[i - 1][0]);
             } else {
-                dp[i + 1][1] = dp[i][1];
-                dp[i + 1][0] = dp[i][0];
+                dp[i][1] = dp[i - 1][1];
+                dp[i][0] = dp[i - 1][0];
             }
         }
-        return Math.max(dp[dp.length - 1][1], dp[dp.length - 1][0]) + 1;
+
+        System.out.println(dp.length - 1);
+        return Math.max(dp[dp.length - 1][1], dp[dp.length - 1][0]);
+    }
+
+    public static void main(String[] args)
+    {
+        int[] nums = new int[] {1, 7, 4, 9, 2, 5};
+        System.out.print(wiggleMaxLength1(nums));
+
     }
 
 }

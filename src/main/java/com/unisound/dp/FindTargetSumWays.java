@@ -84,6 +84,10 @@ public class FindTargetSumWays
             return 0;
         }
 
+        // f(i, j) = f(i-1, j-nums[i]) + f(i-1, j+nums[i]);
+
+        // 定义：f(i, j) 表示对 0..i 的元素添加正负号后，数组和恰好为 j 的方案数。
+
         int[][] dp = new int[nums.length + 1][sum * 2 + 1];
         dp[0][sum] = 1;
         int leftBound = 0;

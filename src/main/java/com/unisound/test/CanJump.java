@@ -20,24 +20,21 @@ public class CanJump
 {
     public boolean canJump(int[] nums)
     {
-        if (nums == null || nums.length == 0) {
-            return false;
-        }
+        int len = nums.length;
+        boolean[] dp = new boolean[len];
 
-        boolean[] dp = new boolean[nums.length];
+        dp[len - 1] = true;
 
-        dp[nums.length - 1] = true;
+        for (int i = len - 2; i >= 0; i--) {
+            int skip = Math.min(i + nums[i], len - 1);
 
-        for (int i = nums.length - 1; i >= 0; i++) {
-            int skip = Math.max(i + nums[i], nums.length - 1);
-
-            for (int j = i; j <= skip; j++) {
+            for (int j = i + 1; j <= skip; j++) {
                 if (dp[j]) {
                     dp[i] = true;
                     break;
                 }
-            }
 
+            }
         }
 
         return dp[0];

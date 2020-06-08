@@ -26,7 +26,7 @@ import java.util.Deque;
  */
 public class LargestRectangleArea
 {
-    public int largestRectangleArea(int[] heights)
+    public static int largestRectangleArea(int[] heights)
     {
         // 这里为了代码简便，在柱体数组的头和尾加了两个高度为 0 的柱体。
         // 这两个站在两边的柱形有一个很形象的名词，叫做哨兵（Sentinel）。
@@ -60,6 +60,13 @@ public class LargestRectangleArea
         }
 
         return area;
+
+    }
+
+    public static void main(String[] args)
+    {
+        int[] heights = {2, 3};
+        largestRectangleArea(heights);
 
     }
 

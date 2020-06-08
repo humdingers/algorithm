@@ -38,7 +38,7 @@ public class ShortestWay
 
         while (cur < n) {
             int tmp = cur;
-
+            // 一轮一轮的轮询一遍，源字符串的顺序不变，不一致的跳过相当于删除
             for (int i = 0; i < m && cur < n; i++) {
                 if (source.charAt(i) == target.charAt(cur)) {
                     cur++;

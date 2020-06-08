@@ -39,7 +39,7 @@ public class MaxProduct
 
         for (int i = 1; i < length; i++) {
             dpMax[i] = Math.max(dpMax[i - 1] * nums[i], Math.max(dpMin[i - 1] * nums[i], nums[i]));
-            dpMin[i] = Math.min(dpMin[i] * nums[i], Math.min(dpMin[i] * nums[i], nums[i]));
+            dpMin[i] = Math.min(dpMin[i - 1] * nums[i], Math.min(dpMax[i - 1] * nums[i], nums[i]));
 
             ans = Math.max(ans, dpMax[i]);
 

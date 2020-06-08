@@ -1,6 +1,7 @@
 package com.unisound.slide.window;
 
 //最大连续1的个数 
+
 /*
  * 给定一个由若干 0 和 1 组成的数组 A，我们最多可以将 K 个值从 0 变成 1 。
 
@@ -16,6 +17,17 @@ package com.unisound.slide.window;
     [1,1,1,0,0,1,1,1,1,1,1]
 粗体数字从 0 翻转到 1，最长的子数组长度为 6。
 
+ */
+
+/*
+ * 485. 最大连续1的个数
+给定一个二进制数组， 计算其中最大连续1的个数。
+
+示例 1:
+
+输入: [1,1,0,1,1,1]
+输出: 3
+解释: 开头的两位和最后的三位都是连续1，所以最大连续1的个数是 3.
  */
 public class LongestOnes
 {
@@ -45,6 +57,24 @@ public class LongestOnes
 
         return res;
 
+    }
+
+    public int findMaxConsecutiveOnes(int[] nums)
+    {
+        int count = 0;
+        int maxCount = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == 1) {
+                // Increment the count of 1's by one.
+                count += 1;
+            } else {
+                // Find the maximum till now.
+                maxCount = Math.max(maxCount, count);
+                // Reset count of 1.
+                count = 0;
+            }
+        }
+        return Math.max(maxCount, count);
     }
 
     public static void main(String[] args)
